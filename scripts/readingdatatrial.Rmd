@@ -1,0 +1,42 @@
+---
+title: "Sandbox BC Data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r sandbox}
+library(here)
+library(tidyverse)
+library("readxl")
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT") %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL", 
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
+
+# view(BCdatastripped)
+ ggplot(BCdatastripped, aes(SCHOOL_YEAR, NUMBER_OF_STUDENTS)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+   facet_wrap(~SPECIAL_NEEDS_CODE)
+
+ 
+ 
+
+```
+
