@@ -1,0 +1,63 @@
+---
+title: "Sandbox BC Data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r sandbox}
+library(here)
+library(tidyverse)
+library("readxl")
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ Intellectual Disability" = "C",
+                          "Chronic Health Impairment" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "Intensive Behavioural Intervention" = "H",
+                          "Mild Intellectual Disability" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Intervention" = "R"),
+         SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(DATA_LEVEL == "DISTRICT LEVEL", 
+         DISTRICT_NUMBER == "070",
+         #PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N")
+
+
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+  geom_line(color = "cornflowerblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+   facet_wrap(~SPECIAL_NEEDS_CODE)
+
+ 
+ 
+
+```
+
