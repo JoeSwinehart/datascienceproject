@@ -26,17 +26,33 @@ BCdatastripped <- BCdata %>%
          "SPECIAL_NEEDS_CODE", 
          "NUMBER_OF_STUDENTS", 
          "PUBLIC_OR_INDEPENDENT") %>% 
+  mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ Intellectual Disability" = "C",
+                          "Chronic Health Impairment" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "Intensive Behavioural Intervention" = "H",
+                          "Mild Intellectual Disability" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Intervention" = "R"),
+         SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
   filter(DATA_LEVEL == "PROVINCE LEVEL", 
-         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N")
 
-# view(BCdatastripped)
- ggplot(BCdatastripped, aes(SCHOOL_YEAR, NUMBER_OF_STUDENTS)) +
-  geom_col() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+  geom_line(color = "cornflowerblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
    facet_wrap(~SPECIAL_NEEDS_CODE)
-
- 
- 
 
 ```
 
