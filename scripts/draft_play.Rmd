@@ -88,6 +88,24 @@ BCdatastripped <- BCdata %>%
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
 ```
 
+```{r urban vs. rural}
+
+bc_data_district_classification <- read_excel("C:/Users/makay/Dropbox (University of Oregon)/University of Oregon/Fall 2020/EDLD 651 Data Science/Final Project/bc_data_district_classification.xlsx")
+
+district_class <- bc_data_district_classification %>%
+  select("SCHOOL_YEAR",
+         "DATA_LEVEL",
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER",
+         "DISTRICT_NAME",
+         "DISTRICT_POPULATION_2016",
+         "DISTRICT_CLASSIFICATION",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  filter(DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School")
+
+```
 
 
 
