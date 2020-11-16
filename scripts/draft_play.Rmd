@@ -162,10 +162,10 @@ ggplot(fresh_primo, aes(age, frequency))+
 ```
 ```{r}
 #this is more in line with the BC graphing
-#ggplot(fresh_primo, aes(year, frequency))+
-# geom_smooth(color = "cornflowerblue") +
-# theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-#  facet_wrap(~disability)
+ggplot(fresh_primo, aes(year, frequency))+
+ geom_smooth(color = "cornflowerblue") +
+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+ facet_wrap(~disability)
 
 ```
 
