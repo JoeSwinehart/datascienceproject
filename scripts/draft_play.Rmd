@@ -107,6 +107,72 @@ district_class <- bc_data_district_classification %>%
 
 ```
 
+```{r}
+library(tidyverse)
+library(janitor)
+library(here)
+library("readxl")
+primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
+cleanest_primo <-primodata %>% 
+  remove_empty(which = c("rows", "cols")) %>% 
+  clean_names()
+
+```
+
+```{r}
+cleanest_primo <- cleanest_primo %>% 
+  select(-six_to_twentyone_total, -x24)
+
+
+```
+
+```{r}
+cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
+cleanest_primo2
+
+```
+
+```{r}
+fresh_primo <- cleanest_primo2 %>% 
+  pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
+  mutate(age = parse_number(age), 
+         year = parse_number(year))
+
+```
+
+```{r}
+fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarize(total=sum(frequency, na.rm=TRUE))
+```
+
+```{r}
+ggplot(fresh_primo, aes(age, frequency))+
+  geom_line(aes(color=disability))+
+  facet_wrap(~year)
+
+
+```
+
+```{r}
+#hiding this for now
+#fresh_primo %>% 
+ # filter(disability=="AUTISM") %>% 
+  
+#ggplot(aes(age, frequency))+
+#  geom_line(aes(color=disability))+
+ # facet_wrap(~year)
+
+```
+```{r}
+#this is more in line with the BC graphing
+#ggplot(fresh_primo, aes(year, frequency))+
+# geom_smooth(color = "cornflowerblue") +
+# theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+#  facet_wrap(~disability)
+
+```
+
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Souteast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gqaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga's, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
 
 ``` {r District Census Population Table}
