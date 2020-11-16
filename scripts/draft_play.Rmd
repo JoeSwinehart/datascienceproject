@@ -3,7 +3,7 @@ title             : "The title"
 shorttitle        : "Title"
 
 author: 
-  - name          : "First Author"
+  - name          : "Makayla Whitney"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Postal address"
