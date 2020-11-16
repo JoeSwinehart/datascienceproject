@@ -89,6 +89,54 @@ BCdatastripped <- BCdata %>%
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
 ```
 
+-- more introductory text here --
+Children designated with Special Needs categories have predominantly increased at different rates in British Colubmia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
+
+```{r sandbox}
+library(here)
+library(tidyverse)
+library("readxl")
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ Intellectual Disability" = "C",
+                          "Chronic Health Impairment" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "Intensive Behavioural Intervention" = "H",
+                          "Mild Intellectual Disability" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Intervention" = "R"),
+         SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(DATA_LEVEL == "DISTRICT LEVEL", 
+         DISTRICT_NUMBER == "070",
+         #PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N")
+
+
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+  geom_line(color = "cornflowerblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+   facet_wrap(~SPECIAL_NEEDS_CODE)
+
+```
+
 ```{r urban vs. rural}
 
 bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
@@ -105,7 +153,8 @@ district_class <- bc_data_district_classification %>%
          "NUMBER_OF_STUDENTS") %>%
   filter(DATA_LEVEL == "DISTRICT LEVEL",
          PUBLIC_OR_INDEPENDENT == "BC Public School") %>%
-  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE) 
+  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
+    select(-"name")
 
 ```
 
@@ -152,12 +201,12 @@ ggplot(fresh_primo, aes(age, frequency))+
 
 ```{r}
 #hiding this for now
-#fresh_primo %>% 
- # filter(disability=="AUTISM") %>% 
+fresh_primo %>%
+filter(disability=="AUTISM") %>%
   
-#ggplot(aes(age, frequency))+
-#  geom_line(aes(color=disability))+
- # facet_wrap(~year)
+ggplot(aes(age, frequency))+
+ geom_line(aes(color=disability))+
+facet_wrap(~year)
 
 ```
 ```{r}
