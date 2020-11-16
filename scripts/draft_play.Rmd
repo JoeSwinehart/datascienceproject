@@ -89,6 +89,11 @@ BCdatastripped <- BCdata %>%
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
 ```
 
+
+# Introduction
+
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Within the BC dataset, data acquisition is part of formal student status reporting that is required within BC public schools, typically occurring in October of each school year. Levels of categorization include school- district- and provincial-level head counts. The OR data set includes state-wide head counts that are not aggregated by school or district. Etc.
+
 -- more introductory text here --
 Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
 
