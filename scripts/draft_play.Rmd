@@ -90,7 +90,7 @@ BCdatastripped <- BCdata %>%
 ```
 
 -- more introductory text here --
-Children designated with Special Needs categories have predominantly increased at different rates in British Colubmia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
+Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
 
 ```{r sandbox}
 library(here)
