@@ -210,7 +210,8 @@ fresh_primo %>%
 
 ggplot(fresh_primo, aes(age, frequency))+
   geom_line(aes(color=disability))+
-  facet_wrap(~year)
+  facet_wrap(~year)+
+    labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
 
 ```
 
@@ -229,7 +230,8 @@ facet_wrap(~year)
 ggplot(fresh_primo, aes(year, frequency))+
  geom_smooth(color = "cornflowerblue") +
  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
- facet_wrap(~disability)
+ facet_wrap(~disability)+
+    labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
 
 ```
 
