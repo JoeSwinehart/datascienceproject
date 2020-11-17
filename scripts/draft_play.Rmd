@@ -121,22 +121,22 @@ BCdatastripped <- BCdata %>%
   mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
                           "Physically Dependent" = "A",
                           "Deafblind" = "B",
-                          "Moderate+ Intellectual Disability" = "C",
+                          "Moderate+ ID" = "C",
                           "Chronic Health Impairment" = "D",
                           "Visual Impairment" = "E",
                           "Deaf or Hard of Hearing" = "F",
                           "Autism" = "G",
-                          "Intensive Behavioural Intervention" = "H",
-                          "Mild Intellectual Disability" = "K",
+                          "Intensive Behavioural Need" = "H",
+                          "Mild ID" = "K",
                           "Learning Disability" = "Q",
                           "Gifted" = "P",
-                          "Mild Behavioural Intervention" = "R"),
+                          "Mild Behavioural Need" = "R"),
          SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
          NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
          SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
-  filter(DATA_LEVEL == "DISTRICT LEVEL", 
-         DISTRICT_NUMBER == "070",
-         #PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+  filter(DATA_LEVEL == "PROVINCE LEVEL",
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SCHOOL_YEAR >= 7,
          SPECIAL_NEEDS_CODE != "M",
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
@@ -145,7 +145,10 @@ BCdatastripped <- BCdata %>%
  ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-   facet_wrap(~SPECIAL_NEEDS_CODE)
+   facet_wrap(~SPECIAL_NEEDS_CODE) +
+   labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
+        x = "School Year",
+        y = "Headcount")
 
 ```
 
