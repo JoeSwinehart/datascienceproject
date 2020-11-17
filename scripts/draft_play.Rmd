@@ -92,7 +92,14 @@ BCdatastripped <- BCdata %>%
 
 # Introduction
 
-Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Within the BC dataset, data acquisition is part of formal student status reporting that is required within BC public schools, typically occurring in October of each school year. Levels of categorization include school- district- and provincial-level head counts. The OR data set includes state-wide head counts that are not aggregated by school or district. Etc.
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+
+We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization. 
+
+Secondly, we hope to more closely analyze any changes, or lack thereof, within the BC data following the year 2016 during which a BC Supreme Court ruled in favor of limiting the number of special needs students in classrooms and expanding the number of specialist teachers schools are required to hire. 
+
+Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and  high-incidence diagnoses will be compared to those of other regions over time.
+
 
 -- more introductory text here --
 Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
