@@ -1,0 +1,267 @@
+---
+title             : "The title"
+shorttitle        : "Title"
+
+author: 
+  - name          : "Makayla Whitney"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "Postal address"
+    email         : "my@email.com"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+
+authornote: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+
+  Enter author note here.
+
+abstract: |
+  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  
+  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+  
+  One sentence clearly stating the **general problem** being addressed by  this particular study.
+  
+  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
+  
+  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
+  
+  One or two sentences to put the results into a more **general context**.
+  
+  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r setup, include = FALSE, echo = FALSE, warning = FALSE}
+library("papaja")
+r_refs("r-references.bib")
+library(here)
+library(tidyverse)
+library("readxl")
+library(janitor)
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT") %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL", 
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
+```
+
+
+# Introduction
+
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+
+We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization. 
+
+Secondly, we hope to more closely analyze any changes, or lack thereof, within the BC data following the year 2016 during which a BC Supreme Court ruled in favor of limiting the number of special needs students in classrooms and expanding the number of specialist teachers schools are required to hire. 
+
+Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and  high-incidence diagnoses will be compared to those of other regions over time.
+
+
+-- more introductory text here --
+Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
+
+```{r sandbox}
+library(here)
+library(tidyverse)
+library("readxl")
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ ID" = "C",
+                          "Chronic Health Impairment" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "Intensive Behavioural Need" = "H",
+                          "Mild ID" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Need" = "R"),
+         SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL",
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SCHOOL_YEAR >= 7,
+         SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N")
+
+
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+  geom_line(color = "cornflowerblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+   facet_wrap(~SPECIAL_NEEDS_CODE) +
+   labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
+        x = "School Year",
+        y = "Headcount")
+
+```
+
+```{r urban vs. rural}
+
+bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
+
+district_class <- bc_data_district_classification %>%
+  select("SCHOOL_YEAR",
+         "DATA_LEVEL",
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER",
+         "DISTRICT_NAME",
+         "DISTRICT_POPULATION_2016",
+         "DISTRICT_CLASSIFICATION",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  filter(DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School") %>%
+  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
+    select(-"name")
+
+```
+
+The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
+
+``` {r District Census Population Table}
+
+
+
+```
+
+This table displays the census results from 2011 and 2016 for our school districts. Many of the populations have stayed consistent within their urban or rural category. Three districts to note from the table are Nanaimo, Kamloops, and Chilliwack.  In 2011, they were rural, but for our dataset they have been classified as urban due to their population increase in 2016.
+
+```{r cleaning Oregon data}
+primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
+cleanest_primo <-primodata %>% 
+  remove_empty(which = c("rows", "cols")) %>% 
+  clean_names()
+
+cleanest_primo <- cleanest_primo %>% 
+  select(-six_to_twentyone_total, -x24)
+
+cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
+cleanest_primo2
+
+fresh_primo <- cleanest_primo2 %>% 
+  pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
+  mutate(age = parse_number(age), 
+         year = parse_number(year))
+
+fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarize(total=sum(frequency, na.rm=TRUE))
+
+```
+
+```{r Oregon plot}
+
+ggplot(fresh_primo, aes(age, frequency))+
+  geom_line(aes(color=disability))+
+  facet_wrap(~year)+
+    labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
+
+```
+
+```{r}
+#hiding this for now
+fresh_primo %>%
+filter(disability=="AUTISM") %>%
+  
+ggplot(aes(age, frequency))+
+ geom_line(aes(color=disability))+
+facet_wrap(~year)
+
+```
+```{r}
+#this is more in line with the BC graphing
+ggplot(fresh_primo, aes(year, frequency))+
+ geom_smooth(color = "cornflowerblue") +
+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+ facet_wrap(~disability)+
+    labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
+
+```
+
+
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
