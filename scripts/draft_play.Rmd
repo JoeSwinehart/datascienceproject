@@ -101,23 +101,23 @@ Secondly, we hope to more closely analyze any changes, or lack thereof, within t
 Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and  high-incidence diagnoses will be compared to those of other regions over time.
 
 
--- more introductory text here --
+# Problem Statement and RQs
+In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are viewed as favourable on the world stage, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
+
+With respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers:
+(1) Do student prevalence rates of disability or disorder change after the supreme court ruling of 2016?
+(2) Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
+
+# Results
+
 Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
 
-```{r sandbox}
+```{r sandbox, warning=FALSE}
 library(here)
 library(tidyverse)
 library("readxl")
 
-BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
-
-BCdatastripped <- BCdata %>% 
-  select("SCHOOL_YEAR", 
-         "DATA_LEVEL", 
-         "SPECIAL_NEEDS_CODE", 
-         "NUMBER_OF_STUDENTS", 
-         "PUBLIC_OR_INDEPENDENT",
-         "DISTRICT_NUMBER") %>% 
+BCdatastripped_spedcat <- BCdatastripped %>% 
   mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
                           "Physically Dependent" = "A",
                           "Deafblind" = "B",
@@ -133,16 +133,14 @@ BCdatastripped <- BCdata %>%
                           "Mild Behavioural Need" = "R"),
          SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
          NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
-         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
-  filter(DATA_LEVEL == "PROVINCE LEVEL",
-         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
-         SCHOOL_YEAR >= 7,
+         SCHOOL_YEAR = as.integer(SCHOOL_YEAR)) %>% 
+  filter(SCHOOL_YEAR >= 7,
          SPECIAL_NEEDS_CODE != "M",
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
 
 
- ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+ ggplot(BCdatastripped_spedcat, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
    facet_wrap(~SPECIAL_NEEDS_CODE) +
@@ -234,15 +232,6 @@ ggplot(fresh_primo, aes(year, frequency))+
     labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
 
 ```
-
-
-
-# Methods
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
-
-## Participants
-
-## Material
 
 ## Procedure
 
