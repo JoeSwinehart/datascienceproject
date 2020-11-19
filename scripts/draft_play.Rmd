@@ -89,6 +89,7 @@ BCdatastripped <- BCdata %>%
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
 ```
 
+<!-- I'm sure you already know this, but you should fix the YAML. -->
 
 # Introduction
 
@@ -100,6 +101,7 @@ Secondly, we hope to more closely analyze any changes, or lack thereof, within t
 
 Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and  high-incidence diagnoses will be compared to those of other regions over time.
 
+<!-- It seems like you have a lot of interesting questions to answer with many different analyses.  Super cool.   -->
 
 # Problem Statement and RQs
 In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are viewed as favourable on the world stage, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
@@ -150,6 +152,8 @@ BCdatastripped_spedcat <- BCdatastripped %>%
 
 ```
 
+<!-- Personal preference suggestion; I would rather see the x-axis labels not tilted 90 degrees. -->
+
 ```{r urban vs. rural}
 
 bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
@@ -172,6 +176,8 @@ district_class <- bc_data_district_classification %>%
 ```
 
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
+
+<!-- That is an interesting distinction between rural and urban.  I had not thought to classify those distinctions by population.   -->
 
 ``` {r District Census Population Table}
 
@@ -203,6 +209,29 @@ fresh_primo %>%
   summarize(total=sum(frequency, na.rm=TRUE))
 
 ```
+<!-- I think the previous code chunk would be a good place to include comments for your code.  This would help a reader, or someone who may also work with this dataset or your code specifically.  It isn't clear to me as a naive reader how and why you are tidying the way you are.  Include some comments to help walk us through the good work you are doing here. -->
+
+<!-- Also, be sure to use the chunk options to indicate if you want the code to show when you knit. -->
+
+<!-- When I look into the fresh_primo data I notice that there are some observations which have a frequency of -9.  What does that mean? Do you need to deal with that before generating summary statistics? -->
+
+<!-- This also might be a good place to include an APA table or kable.  It seems like the "fresh_primo" df is what you want to work with, or show the reader. -->
+
+```{r}
+
+# Here is a simple kable
+
+fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarize(total=sum(frequency, na.rm=TRUE)) %>% 
+  knitr::kable()
+
+# Here is the apa_table usage. https://www.rdocumentation.org/packages/papaja/versions/0.1.0.9997/topics/apa_table
+
+primo_apa <- apa_table(fresh_primo, caption = "Learning Disabilities in Oregon, 2002-2019", escape = TRUE)
+
+
+```
 
 ```{r Oregon plot}
 
@@ -212,6 +241,37 @@ ggplot(fresh_primo, aes(age, frequency))+
     labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
 
 ```
+
+<!-- AWESOME PLOT!!! Super informative and nice to look at. Another nice option might be to facet on Age and use year as the independent variable.  I think it would be interesting to see the trends across time.  -->
+
+
+```{r}
+
+ggplot(fresh_primo, aes(year, frequency))+
+  geom_line(aes(color=disability))+
+  facet_wrap(~age)+
+    labs(color="Disability", x= "Year", y="Student Count", title ="Disability Prevalence By Year")
+```
+
+<!-- One additional thought I have about the plots.  The age data is not continuous, it is discrete, (i.e. age 6, 7, 8, not 6, 6.1, 6,2, 6,3...) but you used geom_line here.  I think it is effective, but it does suggest that there is data for ages between the discrete years.  Maybe a geom_point + geom_smooth would be more accurate. However, with 11 disabilities, 11 sets of points and 11 fit lines might get messy.  Again, I think your choice is effective in displaying the trend of the data, so if you end up using these plots you should make a note about the continuous/discrete nature of the data. -->
+
+<!-- It might also be nice to see the totals across time without faceting on age. -->
+
+```{r}
+by_age <- fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarise(frequency = sum(frequency))
+  
+by_age %>% 
+  ggplot(aes(year, frequency))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(~disability, scales = "free_y")+
+    labs(color="Disability", x= "Year", y="Student Count", title ="Disability Prevalence By Year", subtitle = "Data displays sums of all age categories")
+    
+```
+
+<!-- It seems like there are some weird points in the data for Developmental Delay and Multiple Disabilities.  It seems related to some of those negative terms, or maybe some NA's.  If you end up using plots like this, it is obviously something you want to look into. Also, play around with eh x-axis, it would be nice to see all the years displayed instead of at 5 year intervals. -->
 
 ```{r}
 #hiding this for now
@@ -223,6 +283,22 @@ ggplot(aes(age, frequency))+
 facet_wrap(~year)
 
 ```
+
+<!-- Another really nice plot.  Some of my research relates to Autism so I find this very interesting.  It seems like there is an obvious age related trend in this data.  Perhaps you will comment on that in the analysis or discussion section. -->
+
+<!-- Sorry for reiterating here, but again, this data is not technically continuous.  You might also use some of the other presentations I used about to combine the different age groups into a total, and plot across time with year as the independent variable. -->
+
+```{r}
+by_age %>% 
+filter(disability=="AUTISM") %>%
+  ggplot(aes(year, frequency)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~disability, scales = "free_y") +
+    labs(color="Disability", x= "Year", y="Student Count", title ="Prevalence of Autism", subtitle = "Data displays the sum of all age categories.")
+```
+
+
 ```{r}
 #this is more in line with the BC graphing
 ggplot(fresh_primo, aes(year, frequency))+
@@ -232,6 +308,37 @@ ggplot(fresh_primo, aes(year, frequency))+
     labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
 
 ```
+
+<!-- OK cool!  It looks like y'all had the same idea I expressed above.  Obviously this is a great way to display the data as we both came to that conclusion separately.  I think these plots are accurate, but check out the code I used in lines 260-270, it includes a few extra bells and whistles to make it look pretty. -->
+
+<!-- At this point, I went back to check your intro for the research questions you mentioned. You mentioned being interested in the data trends with respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers. 
+In seeing this, I think it is important to highlight the 2016 year on your plots.  You can include a line, maybe a dashed line to show the cutoff of the 2016 court ruling. -->
+
+```{r}
+
+# TRYING TO ADD ABLINE at year 2016
+
+by_age %>% 
+filter(disability=="AUTISM") %>%
+  ggplot(aes(year, frequency)) +
+  geom_point() +
+  geom_smooth() +
+  geom_vline(xintercept = 2016) + # without any line parameters you get a simple black line, check below for prettifying options
+  facet_wrap(~disability, scales = "free_y") +
+    labs(color="Disability", x= "Year", y="Student Count", title ="Prevalence of Autism", subtitle = "Data displays the sum of all age categories.")
+
+by_age %>% 
+  ggplot(aes(year, frequency))+
+  geom_point() +
+  geom_smooth() +
+  geom_vline(xintercept = 2016, col = "green", lty=3, lwd= 1) + # you can change the vertical line type with lty, the width with lwd, and the color with col
+  facet_wrap(~disability, scales = "free_y") +
+    labs(color="Disability", x= "Year", y="Student Count", title ="Disability Prevalence By Year", subtitle = "Data displays sums of all age categories")
+
+```
+
+<!-- I think y'all have done a really nice job here!  Your analysis and discussion of the plots will be interesting to hear about.  It's not obvious to me as a naive reader how your displays of the data help expose the answers to your research questions of interest.  But I think your writeup will help make that more clear. -->
+
 
 ## Procedure
 
