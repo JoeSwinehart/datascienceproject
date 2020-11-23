@@ -147,7 +147,7 @@ BCdatastripped_spedcat <- BCdatastripped %>%
    labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
         x = "School Year",
         y = "Headcount")
-
+#strength 1: I really like the data visualization. It is very clear! 
 ```
 
 ```{r urban vs. rural}
@@ -169,6 +169,7 @@ district_class <- bc_data_district_classification %>%
   pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
     select(-"name")
 
+# strength 2: I really like the data cleaning part. They used pivot_longer to make the data more clear! 
 ```
 
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
@@ -181,18 +182,20 @@ The district classification data was scaled down to include only public schools,
 
 This table displays the census results from 2011 and 2016 for our school districts. Many of the populations have stayed consistent within their urban or rural category. Three districts to note from the table are Nanaimo, Kamloops, and Chilliwack.  In 2011, they were rural, but for our dataset they have been classified as urban due to their population increase in 2016.
 
+
 ```{r cleaning Oregon data}
 primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
 cleanest_primo <-primodata %>% 
   remove_empty(which = c("rows", "cols")) %>% 
   clean_names()
 
+# Strength 3: Remove_empty: this function is great to remove NAs.
 cleanest_primo <- cleanest_primo %>% 
   select(-six_to_twentyone_total, -x24)
 
 cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
 cleanest_primo2
-
+ 
 fresh_primo <- cleanest_primo2 %>% 
   pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
   mutate(age = parse_number(age), 
@@ -202,6 +205,7 @@ fresh_primo %>%
   group_by(year, disability) %>% 
   summarize(total=sum(frequency, na.rm=TRUE))
 
+# This is the part the I learned. I learned the parse_number function to .This drops any non-numeric characters before or after the first number. The grouping mark specified by the locale is ignored inside the number.
 ```
 
 ```{r Oregon plot}
@@ -231,6 +235,7 @@ ggplot(fresh_primo, aes(year, frequency))+
  facet_wrap(~disability)+
     labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
 
+#improvement: I am not sure what does the second ```r``` includes. maybe you could delete. 
 ```
 
 ## Procedure
