@@ -1,26 +1,26 @@
 ---
-title             : "The title"
-shorttitle        : "Title"
+title             : "Trends in Pacific Northwest Special Education Population"
+shorttitle        : "PACNW SpEd Trends"
 
 author: 
-  - name          : "Makayla Whitney"
+  - name          : "David Fainstein"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "Postal address"
-    email         : "my@email.com"
+    address       : "1 David Ave, Eugene, Oregon, USA"
+    email         : "dfainste@uoregon.edu"
     role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
       - Conceptualization
       - Writing - Original Draft Preparation
       - Writing - Review & Editing
-  - name          : "Ernst-August Doelle"
+  - name          : "Janette Avelar"
     affiliation   : "1"
     role:
       - Writing - Review & Editing
-  - name          : "Ernst-August Doelle"
+  - name          : "Makayla Whitney"
     affiliation   : "1"
     role:
       - Writing - Review & Editing
-  - name          : "Ernst-August Doelle"
+  - name          : "Joe Swinehart"
     affiliation   : "1"
     role:
       - Writing - Review & Editing
@@ -30,12 +30,16 @@ affiliation:
     institution   : "University of Oregon"
 
 authornote: |
-  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+  Janette Avelar, University of Oregon College of Education
+  David Fainstein, University of Oregon College of Education
+  Joe Swinehart, Behavioral Research & Teaching
+  Makayla Whitney, University of Oregon College of Education
 
-  Enter author note here.
-
+  Project completed using RStudio, GitKraken, GitHub, and papaja
+  
+  Contact: dfainste@uoregon.edu
 abstract: |
-  One or two sentences providing a **basic introduction** to the field,  comprehensible to a scientist in any discipline.
+  This paper will examine the changes in public school special education population in Vancouver, B.C. and Oregon over the last 20 years.
   
   Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
   
@@ -51,8 +55,8 @@ abstract: |
   
   <!-- https://tinyurl.com/ybremelq -->
   
-keywords          : "keywords"
-wordcount         : "X"
+keywords          : "Vancouver, British Columbia, Oregon, Special Education, SpEd"
+wordcount         : "0<n<1,000,000"
 
 bibliography      : ["r-references.bib"]
 
@@ -101,27 +105,23 @@ Secondly, we hope to more closely analyze any changes, or lack thereof, within t
 Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and  high-incidence diagnoses will be compared to those of other regions over time.
 
 
-# Problem Statement and Research Questions
-In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are viewed as favourable on the world stage, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
-
-With respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers:
-(1) Do student prevalence rates of disability or disorder change after the supreme court ruling of 2016?
-(2) Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
-
-## Hypotheses
-(1) We anticipate that prevalence rates of disability or disorder will not change for diagnostically rigid categories (e.g., Autism Spectrum Disorder) and may plateau or decrease for diagnostically malleable categories (e.g., mild behavioural need).
-(2) Allied professional resource support in the BC public education system points to challenges in rural settings. Therefore, we anticipate that the longitudinal provincial trend will largely be driven by urban school districts and rural districts may have highly variable outcomes post-2016 supreme court ruling. 
-
-# Results
-
+-- more introductory text here --
 Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period: 
 
-```{r sandbox, warning=FALSE}
+```{r sandbox}
 library(here)
 library(tidyverse)
 library("readxl")
 
-BCdatastripped_spedcat <- BCdatastripped %>% 
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
   mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
                           "Physically Dependent" = "A",
                           "Deafblind" = "B",
@@ -137,14 +137,16 @@ BCdatastripped_spedcat <- BCdatastripped %>%
                           "Mild Behavioural Need" = "R"),
          SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
          NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
-         SCHOOL_YEAR = as.integer(SCHOOL_YEAR)) %>% 
-  filter(SCHOOL_YEAR >= 7,
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL",
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SCHOOL_YEAR >= 7,
          SPECIAL_NEEDS_CODE != "M",
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
 
 
- ggplot(BCdatastripped_spedcat, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
    facet_wrap(~SPECIAL_NEEDS_CODE) +
@@ -153,28 +155,6 @@ BCdatastripped_spedcat <- BCdatastripped %>%
         y = "Headcount")
 
 ```
-As observed in the figure above, low-incidence categories of need (e.g., deafblindness, visual impairment) remain constant over time. Both categorizations of intellectual disability saw a slight linear decline over time, while intensive behavioural need and learning disability categories had a slight linear increase over time. Chronic health impairment appeared to have a linear increase; though, no other category increased as rapidly as Autism throughout the more than two decades observed. 
-
-
-``` {r growthrates}
-
-# library(growthrates)
-# 
-# growthrate1 <- BCdatastripped_spedcat %>% 
-#   filter(SPECIAL_NEEDS_CODE == "Autism")
-# 
-# all_easylinear(BCdatastripped_spedcat, grouping = "SPECIAL_NEEDS_CODE", time = "SCHOOL_YEAR", y= "NUMBER_OF_STUDENTS")
-
- ggplot(BCdatastripped_spedcat, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
-  geom_line(color = "cornflowerblue") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-   facet_wrap(~SPECIAL_NEEDS_CODE) +
-   labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
-        x = "School Year",
-        y = "Headcount")
-
-```
-
 
 ```{r urban vs. rural}
 
@@ -255,9 +235,18 @@ ggplot(fresh_primo, aes(year, frequency))+
  geom_smooth(color = "cornflowerblue") +
  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
  facet_wrap(~disability)+
-    labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
+    labs(color="frequency", x= "Year", y="Student Count", title = "Oregon Headcount of Students with Exceptionalities by Category")
 
 ```
+
+
+
+# Methods
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+## Participants
+
+## Material
 
 ## Procedure
 
