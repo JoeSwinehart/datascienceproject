@@ -12,7 +12,6 @@ library("readxl")
 library(janitor)
 
 #Put library calls you add for your file below here:
-library(kableExtra)
 ```
 
 ```{r bc sandbox}
@@ -48,6 +47,11 @@ BCdatastripped <- BCdata %>%
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
 
+# Making student number column numeric
+x <- c(10)
+BCdata[ , x] <- apply(BCdata[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+#
 
  ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
@@ -57,6 +61,39 @@ BCdatastripped <- BCdata %>%
         x = "School Year",
         y = "Headcount")
 ```
+
+```{r table: headcount by year}
+#Data View
+#view(BCdatastripped)
+#view(BCdata)
+#as_tibble(count_by_year)
+
+#Data Prep
+count_by_year <- BCdata %>% 
+  janitor::clean_names() %>% 
+  group_by(school_year, special_needs_desc) %>% 
+  mutate(total_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select("school_year",
+         "special_needs_desc",
+         "total_students") %>% 
+  drop_na()
+
+#Table
+apa_table(
+  count_by_year,
+  digits = 0,
+  caption = "Headcount by Classification and District, Select Years 1996-2020",
+  note = "Number of students is estimated and does not include masked data.",
+  col.names = c("School Year",
+                "Special Needs Description",
+                "Number of Students")
+)
+
+#Table is huge - pivot_wider by year and maybe select specific years to look at
+
+unique(count_by_year$school_year)
+```
+
 
 ```{r urban vs rural}
 bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
@@ -82,13 +119,13 @@ view(district_class) #Need cols 6 & 8
 x <- c(6,8)
 district_class[ , x] <- apply(district_class[ , x], 2,
                                function(x)as.numeric(as.character(x)))
-
+#
 ```
 
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
 
 ``` {r District Census Population Table}
-# as_tibble(census_data)
+#Data Prep
 census_data <- district_class %>% 
   janitor::clean_names() %>% 
   group_by(district_name, district_number) %>% 
@@ -100,6 +137,7 @@ census_data <- district_class %>%
             "number_of_students")) %>% 
   distinct()
 
+#Table
 apa_table(
   census_data,
     digits = 0,

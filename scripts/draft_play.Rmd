@@ -154,6 +154,46 @@ BCdatastripped <- BCdata %>%
         x = "School Year",
         y = "Headcount")
 
+ # Making student number column numeric
+x <- c(10)
+BCdata[ , x] <- apply(BCdata[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+#
+```
+
+```{r table: headcount by year}
+#This is a work in progress no touchy
+
+
+#Data View
+#view(BCdatastripped)
+#view(BCdata)
+#as_tibble(count_by_year)
+
+#Data Prep
+count_by_year <- BCdata %>% 
+  janitor::clean_names() %>% 
+  group_by(school_year, special_needs_desc) %>% 
+  mutate(total_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select("school_year",
+         "special_needs_desc",
+         "total_students") %>% 
+  drop_na()
+
+#Table
+apa_table(
+  count_by_year,
+  digits = 0,
+  caption = "Headcount by Classification and District, Select Years 1996-2020",
+  note = "Number of students is estimated and does not include masked data.",
+  col.names = c("School Year",
+                "Special Needs Description",
+                "Number of Students")
+)
+
+#Table is huge - pivot_wider by year and maybe select specific years to look at
+
+unique(count_by_year$school_year)
 ```
 
 ```{r urban vs. rural}
@@ -175,14 +215,42 @@ district_class <- bc_data_district_classification %>%
   pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
     select(-"name")
 
+#Attempting to make columns numeric
+view(district_class) #Need cols 6 & 8
+
+x <- c(6,8)
+district_class[ , x] <- apply(district_class[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+#
 ```
 
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
 
 ``` {r District Census Population Table}
+#Data Prep
+census_data <- district_class %>% 
+  janitor::clean_names() %>% 
+  group_by(district_name, district_number) %>% 
+  mutate(est_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c("school_year",
+            "data_level",
+            "public_or_independent",
+            "special_needs_code",
+            "number_of_students")) %>% 
+  distinct()
 
-
-
+#Table
+apa_table(
+  census_data,
+    digits = 0,
+  caption = "District Classification by Population According to 2016 Census",
+  note = "Number of students is estimated and does not include masked data.",
+  col.names = c("District Number",
+            "District Name",
+            "Population",
+            "Classification",
+            "Number of Students")
+)
 ```
 
 This table displays the census results from 2011 and 2016 for our school districts. Many of the populations have stayed consistent within their urban or rural category. Three districts to note from the table are Nanaimo, Kamloops, and Chilliwack.  In 2011, they were rural, but for our dataset they have been classified as urban due to their population increase in 2016.
