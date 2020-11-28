@@ -1,0 +1,146 @@
+---
+title: "j_play"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("papaja")
+library(here)
+library(tidyverse)
+library("readxl")
+library(janitor)
+
+#Put library calls you add for your file below here:
+library(kableExtra)
+```
+
+```{r bc sandbox}
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCdatastripped <- BCdata %>% 
+  select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ ID" = "C",
+                          "Chronic Health Impairment" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "Intensive Behavioural Need" = "H",
+                          "Mild ID" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Need" = "R"),
+         SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL",
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total",
+         SCHOOL_YEAR >= 7,
+         SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N")
+
+
+ ggplot(BCdatastripped, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
+  geom_line(color = "cornflowerblue") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+   facet_wrap(~SPECIAL_NEEDS_CODE) +
+   labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
+        x = "School Year",
+        y = "Headcount")
+```
+
+```{r urban vs rural}
+bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
+
+district_class <- bc_data_district_classification %>%
+  select("SCHOOL_YEAR",
+         "DATA_LEVEL",
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER",
+         "DISTRICT_NAME",
+         "DISTRICT_POPULATION_2016",
+         "DISTRICT_CLASSIFICATION",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  filter(DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School") %>%
+  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
+    select(-"name")
+
+#Attempting to make columns numeric
+view(district_class) #Need cols 6 & 8
+
+x <- c(6,8)
+district_class[ , x] <- apply(district_class[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+
+```
+
+The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
+
+``` {r District Census Population Table}
+# as_tibble(census_data)
+census_data <- district_class %>% 
+  janitor::clean_names() %>% 
+  group_by(district_name, district_number) %>% 
+  mutate(est_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c("school_year",
+            "data_level",
+            "public_or_independent",
+            "special_needs_code",
+            "number_of_students")) %>% 
+  distinct()
+
+apa_table(
+  census_data,
+    digits = 0,
+  caption = "District Classification by Population According to 2016 Census",
+  note = "Number of students is estimated and does not include masked data.",
+  col.names = c("District Number",
+            "District Name",
+            "Population",
+            "Classification",
+            "Number of Students")
+)
+```
+
+```{r clean OR data}
+primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
+cleanest_primo <-primodata %>% 
+  remove_empty(which = c("rows", "cols")) %>% 
+  clean_names()
+
+cleanest_primo <- cleanest_primo %>% 
+  select(-six_to_twentyone_total, -x24)
+
+cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
+cleanest_primo2
+
+fresh_primo <- cleanest_primo2 %>% 
+  pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
+  mutate(age = parse_number(age), 
+         year = parse_number(year))
+
+fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarize(total=sum(frequency, na.rm=TRUE))
+
+```
+
+```{r Oregon plot}
+
+ggplot(fresh_primo, aes(age, frequency))+
+  geom_line(aes(color=disability))+
+  facet_wrap(~year)+
+    labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
+```
+
