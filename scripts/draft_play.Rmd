@@ -181,17 +181,17 @@ count_by_year <- BCdata %>%
   drop_na()
 
 #Table
-apa_table(
-  count_by_year,
-  digits = 0,
-  caption = "Headcount by Classification and District, Select Years 1996-2020",
-  note = "Number of students is estimated and does not include masked data.",
-  col.names = c("School Year",
-                "Special Needs Description",
-                "Number of Students")
-)
+#apa_table(
+#  count_by_year,
+#  digits = 0,
+#  caption = "Headcount by Classification and District, Select Years 1996-2020",
+#  note = "Number of students is estimated and does not include masked data.",
+#  col.names = c("School Year",
+#                "Special Needs Description",
+#                "Number of Students")
+#)
 
-#Table is huge - pivot_wider by year and maybe select specific years to look at
+#Table is huuuge - do not run table code yet or your computer will be frozen for 5 minutes.
 
 unique(count_by_year$school_year)
 ```
