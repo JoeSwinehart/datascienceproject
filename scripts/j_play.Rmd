@@ -78,6 +78,19 @@ count_by_year <- BCdata %>%
          "total_students") %>% 
   drop_na()
 
+
+count_by_year <- BCdata %>% 
+  janitor::clean_names() %>% 
+  group_by(school_year, special_needs_desc) %>% 
+  mutate(total_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select("school_year",
+         "special_needs_desc",
+         "total_students") %>% 
+  pivot_wider(names_from = school_year,
+              values_from = total_students) %>% 
+  drop_na()
+
+
 #Table
 apa_table(
   count_by_year,
@@ -150,6 +163,52 @@ apa_table(
             "Number of Students")
 )
 ```
+
+```{r rural play}
+#Data Prep
+rural_districts <- district_class %>% 
+  janitor::clean_names() %>% 
+  filter(district_classification == "Rural") %>% 
+  select(-c("data_level",
+            "public_or_independent",
+            "district_population_2016"))
+
+#Viz - Totals by Code
+ggplot(rural_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Total Students by Exceptionality",
+       x = "Exceptionality",
+       y = "Number of Students") +
+  scale_color_manual(name = "Special Needs Description",
+                    labels = c("A - Physically Dependent",
+                               "B - Deafblind",
+                               "C - Moderate to Profound Intellectual Disability",
+                               "D - Physical Disability or Chronic Health Impairment",
+                               "E - Visual Impairment",
+                               "F - Deaf or Hard of Hearing",
+                               "G - Autism Spectrum Disorder",
+                               "H - Inten Behav Inter/Serious Mental Illness",
+                               "J - Severe Learning Disabilities",
+                               "K - Mild Intellectual Disability",
+                               "M - Behavior Disorder (Moderate)",
+                               "N - Behavior Disorder (Rehabilitation)",
+                               "P - Gifted",
+                               "Q - Learning Disability",
+                               "R - Moderate Behaviour Support/Mental Illness"))
+
+rlang::last_error()
+```
+
+```{r codes and descs}
+code_key <- bc_data_district_classification %>% 
+  janitor::clean_names() %>% 
+  select(special_needs_code, special_needs_desc) %>% 
+  distinct()
+```
+
 
 ```{r clean OR data}
 primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))

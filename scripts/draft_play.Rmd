@@ -255,6 +255,102 @@ apa_table(
 
 This table displays the census results from 2011 and 2016 for our school districts. Many of the populations have stayed consistent within their urban or rural category. Three districts to note from the table are Nanaimo, Kamloops, and Chilliwack.  In 2011, they were rural, but for our dataset they have been classified as urban due to their population increase in 2016.
 
+```{r rural play}
+#Data Prep
+rural_districts <- district_class %>% 
+  janitor::clean_names() %>% 
+  filter(district_classification == "Rural") %>% 
+  select(-c("data_level",
+            "public_or_independent",
+            "district_population_2016"))
+
+#Viz - Totals by Code
+ggplot(rural_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Total Students by Exceptionality",
+       x = "Exceptionality",
+       y = "Number of Students")
+
+#Data for Rural Totals (No categories)
+rural_totals <- rural_districts %>% 
+  group_by(school_year, district_name, district_number) %>% 
+  mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+#Data Viz Totals/Time
+ggplot(rural_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+#What's going on with Prince George? Why is there such a steep drop in 2006?
+pg <- rural_districts %>% 
+  filter(district_name == "Prince George") %>% 
+  as_tibble()
+
+pg_sums <- pg %>% 
+  group_by(school_year) %>% 
+  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(district_number, special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+
+#What's happening by Dx?
+pg_dx_sum <- pg %>% 
+  group_by(school_year, special_needs_code) %>% 
+  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(district_number, district_classification, number_of_students)) %>% 
+  distinct()
+
+ggplot(pg_dx_sum, aes(school_year, student)) +
+  geom_col() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  facet_wrap(~special_needs_code)
+
+#What's going on with gifted?????
+pg_gifted <- pg %>% 
+  filter(special_needs_code == "P") %>% 
+  select(-c(district_number, district_classification))
+
+ggplot(pg_gifted, aes(school_year, number_of_students)) +
+  geom_col() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r urban play}
+#Data Prep
+urban_districts <- district_class %>% 
+  janitor::clean_names() %>% 
+  filter(district_classification == "Urban") %>% 
+  select(-c("data_level",
+            "public_or_independent",
+            "district_population_2016"))
+
+urban_totals <- urban_districts %>% 
+  group_by(school_year, district_name, district_number) %>% 
+  mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+#Data Viz Totals/Time
+ggplot(urban_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+#Viz - Totals by Code
+ggplot(urban_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Total Students by Exceptionality",
+       x = "Exceptionality",
+       y = "Number of Students")
+```
+
 ```{r cleaning Oregon data}
 primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
 cleanest_primo <-primodata %>% 
