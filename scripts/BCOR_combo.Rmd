@@ -305,8 +305,6 @@ postsup_sd <- sapply(postsup, sd)
 
 esc_mean_sd(grp1m = presup_mean, grp1sd = presup_sd, grp1n = 13, grp2m = postsup_mean, grp2sd = postsup_sd, grp2n = 3, es.type = "g")
 
-
-
 ```
 
 # Methods
