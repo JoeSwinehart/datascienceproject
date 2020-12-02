@@ -80,6 +80,7 @@ library(here)
 library(tidyverse)
 library("readxl")
 library(janitor)
+library(esc)
 
 BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
 
@@ -106,11 +107,11 @@ BCdatastripped <- BCdata %>%
                           "Physically Dependent" = "A",
                           "Deafblind" = "B",
                           "Moderate+ ID" = "C",
-                          "Chronic Health Impairment" = "D",
+                          "Chronic Health" = "D",
                           "Visual Impairment" = "E",
                           "Deaf or Hard of Hearing" = "F",
                           "Autism" = "G",
-                          "Intensive Behavioural Need" = "H",
+                          "High Behavioural Need" = "H",
                           "Mild ID" = "K",
                           "Learning Disability" = "Q",
                           "Gifted" = "P",
@@ -245,31 +246,65 @@ combined <- fresh_primo %>%
     mutate(ORheadcount = fct_recode(disability,
                           "Deafblind" = "DEAF-BLINDNESS",
                           "Moderate+ ID" = "INTELLECTUAL DISABILITY",
-                          "Chronic Health Impairment" = "EMOTIONAL DISTURBANCE",
+                          "High Behavioural Need" = "EMOTIONAL DISTURBANCE",
                           "Visual Impairment" = "VISUAL IMPAIRMENT",
                           "Deaf or Hard of Hearing" = "HEARING IMPAIRMENT",
                           "Autism" = "AUTISM",
                           "Mild ID" = "INTELLECTUAL DISABILITY")) %>% 
-  filter(ORheadcount == "Autism") %>% 
+  filter(ORheadcount == "High Behavioural Need") %>% 
   group_by(year) %>% 
   summarise(frequency = sum(frequency))
 
 BCAutism <- BCprovincial %>% 
-  filter(SPECIAL_NEEDS_CODE == "Autism")
-           
-# BCprovincial <- BCdatastripped %>% 
-#   filter(DATA_LEVEL == "PROVINCE LEVEL",
-#          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")  %>% 
-#   mutate(Public_population = BCpopulation$TOTAL_ENROLMENT[SCHOOL_YEAR-8],
-#          prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
-#   mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995)
+  filter(SPECIAL_NEEDS_CODE == "High Behavioural Need")
            
 ggplot() +
-  geom_smooth(data = combined, aes(x = year, y = frequency), color = "cornflowerblue") +
-  geom_smooth(data = BCAutism, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS), color = "red") +
-  labs(title = "Visualizing BC and Oregon Headcount of Autism Spectrum Disorder",
+  geom_smooth(data = combined, aes(x = year, y = frequency, color = "Oregon")) +
+  geom_smooth(data = BCAutism, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS, color = "British Columbia"), se = FALSE) +
+  labs(title = "BC and Oregon Headcount of Students with Chronic Health Conditions",
         x = "School Year",
-        y = "Headcount")
+        y = "Headcount",
+       color = "Legend",
+        scale_color_manual(labels = c("Oregon", "British Columbia"), values = c("blue", "red")))
+
+
+```
+
+
+``` {r calculatingES}
+
+ESdata <- BCdatastripped %>% 
+  filter(SPECIAL_NEEDS_CODE == "High Behavioural Need",
+         DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School",
+         DISTRICT_NUMBER == "036")  %>% 
+  mutate(Public_population = BCpopulation$TOTAL_ENROLMENT[SCHOOL_YEAR-8],
+         prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
+  mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995,
+         pre16 = ifelse(SCHOOL_YEAR <= 2016, "before16", "after16")) %>%
+  group_by(pre16) %>% 
+  pivot_wider(
+    names_from = pre16,
+    values_from = prevalence
+  )
+
+presup <- ESdata %>% 
+  drop_na(before16) %>% 
+  select(before16)
+as.numeric(unlist(presup))
+
+postsup <- ESdata %>% 
+  drop_na(after16) %>% 
+  select(after16)
+as.numeric(unlist(postsup))
+
+presup_mean <- sapply(presup, mean)
+presup_sd <- sapply(presup, sd)
+postsup_mean <- sapply(postsup, mean)
+postsup_sd <- sapply(postsup, sd)
+
+esc_mean_sd(grp1m = presup_mean, grp1sd = presup_sd, grp1n = 13, grp2m = postsup_mean, grp2sd = postsup_sd, grp2n = 3, es.type = "g")
+
 
 
 ```
