@@ -97,9 +97,9 @@ BCdatastripped <- BCdata %>%
 
 # Introduction
 
-Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
 
-We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization. 
+We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the OR data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization. 
 
 Secondly, we hope to more closely analyze any changes, or lack thereof, within the BC data following the year 2016 during which a BC Supreme Court ruled in favor of limiting the number of special needs students in classrooms and expanding the number of specialist teachers schools are required to hire. 
 
@@ -217,7 +217,7 @@ district_class <- bc_data_district_classification %>%
     select(-"name")
 
 #Attempting to make columns numeric
-view(district_class) #Need cols 6 & 8
+#view(district_class) #Need cols 6 & 8
 
 x <- c(6,8)
 district_class[ , x] <- apply(district_class[ , x], 2,
@@ -285,7 +285,10 @@ rural_totals <- rural_districts %>%
 #Data Viz Totals/Time
 ggplot(rural_totals, aes(school_year, students)) +
   geom_col(aes(color = district_name)) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Students with Exceptionalities in Rural Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
 
 #What's going on with Prince George? Why is there such a steep drop in 2006?
 pg <- rural_districts %>% 
@@ -309,7 +312,11 @@ pg_dx_sum <- pg %>%
 ggplot(pg_dx_sum, aes(school_year, student)) +
   geom_col() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  facet_wrap(~special_needs_code)
+  facet_wrap(~special_needs_code) +
+  labs(title = "Students with Exceptionalities in Prince George 1999-2020",
+       x = "School Year",
+       y = "Number of Students")
+# Need some explanation here for explaining facet wrap
 
 #What's going on with gifted?????
 pg_gifted <- pg %>% 
@@ -318,7 +325,11 @@ pg_gifted <- pg %>%
 
 ggplot(pg_gifted, aes(school_year, number_of_students)) +
   geom_col() +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Gifted Students in Prince George 1999-2020",
+       subtitle = "Note: Totals under 10 are masked by district in reporting.",
+       x = "School Year",
+       y = "Total Students")
 
 ##Looking into Sooke (SD 62 - pop. 9,269) categorized under Victoria so urban but technically rural
 ## In progress
@@ -350,7 +361,10 @@ urban_totals <- urban_districts %>%
 #Data Viz Totals/Time
 ggplot(urban_totals, aes(school_year, students)) +
   geom_col(aes(color = district_name)) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Students with Exceptionalities in Urban Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
 
 #Viz - Totals by Code
 ggplot(urban_districts, 
