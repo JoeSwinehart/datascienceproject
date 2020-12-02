@@ -39,7 +39,7 @@ authornote: |
   
   Contact: dfainste@uoregon.edu
 abstract: |
-  This paper will examine the changes in public school special education population in Vancouver, B.C. and Oregon over the last 20 years.
+  This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministrty of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories. 
   
   Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
   
@@ -80,6 +80,7 @@ library(here)
 library(tidyverse)
 library("readxl")
 library(janitor)
+library(dplyr)
 
 BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
 
@@ -96,7 +97,7 @@ BCdatastripped <- BCdata %>%
 
 # Introduction
 
-Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon. The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
 
 We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization. 
 
@@ -318,6 +319,17 @@ pg_gifted <- pg %>%
 ggplot(pg_gifted, aes(school_year, number_of_students)) +
   geom_col() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+##Looking into Sooke (SD 62 - pop. 9,269) categorized under Victoria so urban but technically rural
+## In progress
+
+sooke <- district_class %>%
+  filter(DISTRICT_NAME == "Sooke") %>%
+  as_tibble()
+
+ggplot(sooke, aes(SPECIAL_NEEDS_CODE)) +
+  facet_wrap(~SCHOOL_YEAR)
+  geom_col()
 ```
 
 ```{r urban play}
