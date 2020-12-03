@@ -273,11 +273,13 @@ ggplot() +
 
 ``` {r calculatingES}
 
+urban <- c("023", "034", "035", "036", "037", "038", "039", "040", "041", "042", "043", "044", "045", "046")
+
 ESdata <- BCdatastripped %>% 
-  filter(SPECIAL_NEEDS_CODE == "High Behavioural Need",
+  filter(SPECIAL_NEEDS_CODE == "Chronic Health",
          DATA_LEVEL == "DISTRICT LEVEL",
          PUBLIC_OR_INDEPENDENT == "BC Public School",
-         DISTRICT_NUMBER == "036")  %>% 
+         !DISTRICT_NUMBER %in% urban)  %>% 
   mutate(Public_population = BCpopulation$TOTAL_ENROLMENT[SCHOOL_YEAR-8],
          prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
   mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995,
@@ -292,18 +294,20 @@ presup <- ESdata %>%
   drop_na(before16) %>% 
   select(before16)
 as.numeric(unlist(presup))
+presup_count <- count(presup)
 
 postsup <- ESdata %>% 
   drop_na(after16) %>% 
   select(after16)
 as.numeric(unlist(postsup))
+postsup_count <- count(postsup)
 
 presup_mean <- sapply(presup, mean)
 presup_sd <- sapply(presup, sd)
 postsup_mean <- sapply(postsup, mean)
 postsup_sd <- sapply(postsup, sd)
 
-esc_mean_sd(grp1m = presup_mean, grp1sd = presup_sd, grp1n = 13, grp2m = postsup_mean, grp2sd = postsup_sd, grp2n = 3, es.type = "g")
+esc_mean_sd(grp1m = presup_mean, grp1sd = presup_sd, grp1n = presup_count, grp2m = postsup_mean, grp2sd = postsup_sd, grp2n = postsup_count, es.type = "g")
 
 ```
 
