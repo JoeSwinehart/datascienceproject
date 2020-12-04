@@ -92,6 +92,13 @@ BCpopulation <- read_excel(here("data", "BCpopdata.xlsx")) %>%
   mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
          SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
 
+BCpop_district <- read_excel(here("data", "BCdistrictpop.xlsx")) %>% 
+  select("SCHOOL_YEAR",
+         "TOTAL_ENROLMENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
+
 BCdatastripped <- BCdata %>% 
     #Makayla & Janette - may want to include more columns here with the select for our global "BCdatastripped" df
     select("SCHOOL_YEAR", 
@@ -120,6 +127,10 @@ BCdatastripped <- BCdata %>%
            NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
            SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
   filter(SCHOOL_YEAR >= 9)
+
+BC_districtdata <- BCdatastripped %>% 
+  filter(DATA_LEVEL == "DISTRICT LEVEL")
+Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YEAR", "DISTRICT_NUMBER"), all.x = TRUE)
 
 ```
 
@@ -275,13 +286,10 @@ ggplot() +
 
 urban <- c("023", "034", "035", "036", "037", "038", "039", "040", "041", "042", "043", "044", "045", "046")
 
-ESdata <- BCdatastripped %>% 
-  filter(SPECIAL_NEEDS_CODE == "Chronic Health",
-         DATA_LEVEL == "DISTRICT LEVEL",
-         PUBLIC_OR_INDEPENDENT == "BC Public School",
+ESdata <- Prevalence_data %>% 
+  filter(SPECIAL_NEEDS_CODE == "Mild Behavioural Need",
          !DISTRICT_NUMBER %in% urban)  %>% 
-  mutate(Public_population = BCpopulation$TOTAL_ENROLMENT[SCHOOL_YEAR-8],
-         prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
+  mutate(prevalence = NUMBER_OF_STUDENTS/TOTAL_ENROLMENT) %>% 
   mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995,
          pre16 = ifelse(SCHOOL_YEAR <= 2016, "before16", "after16")) %>%
   group_by(pre16) %>% 
@@ -289,6 +297,10 @@ ESdata <- BCdatastripped %>%
     names_from = pre16,
     values_from = prevalence
   )
+
+
+# 1) group_by for all students with SPED, then run that against public population to sort out overall prevelance of SPED
+# 2) 
 
 presup <- ESdata %>% 
   drop_na(before16) %>% 
