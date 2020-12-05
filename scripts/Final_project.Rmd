@@ -1,0 +1,444 @@
+---
+title             : "Exploring Anomalies in Pacific Northwest Special Education Trends"
+shorttitle        : "PACNW SpEd Trends"
+
+author: 
+  - name          : "David Fainstein"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "1655 Alder, Eugene, Oregon, USA  97403"
+    email         : "dfainste@uoregon.edu"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Janette Avelar"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+  - name          : "Makayla Whitney"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+  - name          : "Joe Swinehart"
+    affiliation   : "1"
+    role:
+      - Writing - Review & Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Oregon"
+
+authornote: |
+  Janette Avelar, University of Oregon College of Education
+  David Fainstein, University of Oregon College of Education
+  Joe Swinehart, Behavioral Research & Teaching
+  Makayla Whitney, University of Oregon College of Education
+
+  Project completed using RStudio, GitKraken, GitHub, and papaja
+  
+  Contact: dfainste@uoregon.edu
+abstract: |
+  This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministrty of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories. 
+  
+  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
+  
+  One sentence clearly stating the **general problem** being addressed by  this particular study.
+  
+  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
+  
+  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
+  
+  One or two sentences to put the results into a more **general context**.
+  
+  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
+  
+  <!-- https://tinyurl.com/ybremelq -->
+  
+keywords          : "Vancouver, British Columbia, Oregon, Special Education, SpEd"
+wordcount         : "0<n<1,000,000"
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+
+```{r setup, include = FALSE, echo = FALSE, warning = FALSE}
+library("papaja")
+r_refs("r-references.bib")
+library(here)
+library(tidyverse)
+library("readxl")
+library(janitor)
+library(esc)
+
+BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
+
+BCpopulation <- read_excel(here("data", "BCpopdata.xlsx")) %>% 
+  select("SCHOOL_YEAR",
+         "TOTAL_ENROLMENT",
+         "PUBLIC_OR_INDEPENDENT") %>% 
+  filter(PUBLIC_OR_INDEPENDENT == "BC PUBLIC SCHOOL") %>% 
+  mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
+
+BCpop_district <- read_excel(here("data", "BCdistrictpop.xlsx")) %>% 
+  select("SCHOOL_YEAR",
+         "TOTAL_ENROLMENT",
+         "DISTRICT_NUMBER") %>% 
+  mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
+
+BCdatastripped <- BCdata %>% 
+    #Makayla & Janette - may want to include more columns here with the select for our global "BCdatastripped" df
+    select("SCHOOL_YEAR", 
+         "DATA_LEVEL", 
+         "SPECIAL_NEEDS_CODE", 
+         "NUMBER_OF_STUDENTS", 
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER") %>% 
+  filter(SPECIAL_NEEDS_CODE != "M",
+         SPECIAL_NEEDS_CODE != "J",
+         SPECIAL_NEEDS_CODE != "N") %>% 
+    mutate(SPECIAL_NEEDS_CODE = fct_recode(SPECIAL_NEEDS_CODE,
+                          "Physically Dependent" = "A",
+                          "Deafblind" = "B",
+                          "Moderate+ ID" = "C",
+                          "Chronic Health" = "D",
+                          "Visual Impairment" = "E",
+                          "Deaf or Hard of Hearing" = "F",
+                          "Autism" = "G",
+                          "High Behavioural Need" = "H",
+                          "Mild ID" = "K",
+                          "Learning Disability" = "Q",
+                          "Gifted" = "P",
+                          "Mild Behavioural Need" = "R"),
+           SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
+           NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
+           SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
+  filter(SCHOOL_YEAR >= 9)
+
+BC_districtdata <- BCdatastripped %>% 
+  filter(DATA_LEVEL == "DISTRICT LEVEL")
+Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YEAR", "DISTRICT_NUMBER"), all.x = TRUE)
+
+```
+
+# Introduction
+Educational policy can impact practice by reorganizing educational delivery and reconceptualizing the meaning and impact of education on society (Ball, 1998). Educational policy exists as a mechanism to drive changes in school buildings that result in socially important outcomes (e.g., increasing literacy acquisition through improved instruction, reducing instances of bullying through prevention programs). However, the relationship between policy and practice in Western formal systems of education is often unclear, misdirected, or atheoretical (Cohen et al., 2009). Leveraging the power of policy as a change agent for the delivery and conceptualization of education stands to benefit a significant proportion of students (Swanson, 2007).
+ 
+When policy is enacted, the intended outcomes are often not realized for months, years, or decades (Gu et al., 2018). For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores (Luke & McArdle, 2009). Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest (Michelmore & Dynarski, 2017).
+ 
+##Current Study
+Our project primarily examines two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets offer insights to the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 2002/2003 to the most recent data from 2019/2020. The OR head counts are drawn from an annual dataset spanning 2002 through 2020. Levels of categorization include school-, district-, and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+ 
+We intend to explore several questions regarding longitudinal trends where educational policy may have impacted special education practice. First, we will use descriptive statistics to describe trends in disability prevalence over time. The initial analyses will inform a discussion on developmental trajectories by illustrating shifts in prevalence growth from static to linearly increasing based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data (e.g., common age of onset for diagnosis per category and diagnostic patterns over time). In studying the differences and similarities between OR and BC datasets, we will also engage in a discussion on diagnostic terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM; American Psychological Association, 2013), in part as a response to a challenge set by differing terminology between BC and OR categorization (i.e., the United States federal guidelines for exceptionality designation are similar but not identical to exceptionality designation guidelines in BC).
+ 
+Second, we hope to closely analyze any changes, or lack thereof, within the BC data following Canadian Supreme Court rulings between the British Columbia Teachers Federation and the province of BC (See Lambert, 2017). Canadian supreme court rulings have significant implications on educational policy in the provinces and, in 2016, resulted in a limit to the number of students with disability designations in classrooms resulting in an expansion of the number of specialist teachers’ that school districts are required to hire. The driving theory of change is that decreasing student-to-teacher ratios and capping the number of students with exceptionalities in each classroom causes student designation practices to change. Theoretically, school district administrators made decisions based on current staffing levels, student designations, diagnostic capacity and malleability, as well as external pressures to adjust practice according to legal mandates.
+ 
+Finally, we will explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. School district level data is useful for examining longitudinal trends for individual administrative units (e.g., superintendent’s office and director(s) of inclusive education); however, this level of data analysis cannot speak to province-wide trends in the culture of superordinate legal directives which impact swift policy changes. Given this, we will run analyses on both exemplar districts to highlight localized policy impacts on practice and amalgamated districts (e.g., school districts defined as rural by Statistics Canada) to investigate cultural shifts in the policy-to-practice association.
+
+##Problem Statement and RQs
+In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are generally higher than a national-level comparison with the US, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
+ 
+With respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers:
+(1) Do student prevalence rates of disability or disorder decrease after the supreme court ruling of 2016 against existing trends?
+(2) Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
+ 
+#Methods
+ 
+Datasets were extracted from publicly available sources. Specifically, the BC Ministry of Education, Oregon Department of Education, and Statistics Canada are the data sources for the current study. Note that the primary jurisdiction of interest is BC, and OR is selected as a reasonable basis of comparison (i.e., similar geography, population, and population growth rate). Further, BC has distinct educational policy from OR as Canadian education is administered entirely by provincial ministries of education and special education law is remarkably different between BC and OR. Together, these datasets help achieve three objectives for acquiring data appropriate to the research questions:
+Headcount data at multiple levels (e.g., district and state or province) for students with exceptionalities, disaggregated by category of exceptionality, year, and location.
+Population data to fit school district locations to a geographical classification (e.g., urban, suburban, rural) as specified in national documentation (e.g., urban centers have a minimum of 10,000 inhabitants based on census data), and calculate prevalence rates.
+Data from multiple jurisdictions where educational policies do not align chronologically. For example, special education law in the United States is disjointed from BC special education law and policy changes are not the same, nor are they implemented simultaneously.
+
+The nature of the current study is intentionally exploratory within a systematic approach of viewing data, testing a priori hypotheses against descriptive statistics, calculating effect sizes if appropriate, and, finally, exploring notable anomalies in prevalence trends that were not hypothesized a posteriori. As a first step, the authors took the approach of examining provincial-level data in BC. Then, trends in BC data were compared against trends in OR data to see if similar rates of students were designated with exceptionalities across jurisdictions. When anomalies were suspected in the BC trends of exceptionality prevalence, then effect size tests were conducted in line with the research questions. Finally, any anomalies that were suspected a posteriori were tested with effect size calculations and discussed in the final section of our current study.
+
+The three datasets were used for analysis in R (cite R) for reproducibility and data visualization. All code for analysis and data representation is publicly available for reproducibility (https://github.com/JoeSwinehart/datascienceproject). There are several caveats for data use and cleaning in the current analysis. First, the BC and OR datasets were not a completely parallel comparison, because the OR dataset includes a broader age range of students (ages 5 - 21) as compared to the BC dataset (ages 5 - 19). Second, data masking necessitates a decision-point for analysis. Specifically, the BC Ministry of Education data masks all cells with headcounts below 10 students, therefore our analyses left out these cases when computing effect sizes. Data masking was most prominently an issue when examining district-level data in BC, as smaller school districts often masked low-incidence exceptionality data. When appropriate, masked data is assigned a convservative estimate of (n = 9) such that enough data units were included in effect size comparisons. Third, Canadian census data from 2016 is the basis of classification for district geographical location (e.g., urban, suburban, rural, exurban). Due to the geographical distribution of population in BC, only two categories are used for the current analyses: urban and rural. 
+
+##Analysis Plan
+The majority of the analyses for the current study are descriptive in nature. The descriptive analysis includes a table or visual representation of prevalence rates or headcounts of students with exceptionalities over time. As the current study is examining anomalies in trend data, trends that break the longitudinal trendline (e.g., sudden drop in prevalence after a decade of linear increase in prevalence) may be examined further. That is, effect sizes between two groups (e.g., group one is three years before a policy change, and group two is three years after a policy change) may be examined to detect the magnitude of differences between groups if they are hypothesized to represent a change in practice stemming from policy implementation. More specifically on the calculation of effect sizes, the Hedge’s g statistic will be used because of the robustness against unequal group sizes.
+
+$$
+Hedges' g = \frac{M_1 + M_2}{SD_{pooled}} 
+$$
+#Results
+Writing on results here...
+
+First, we see that the BC trends do not show significant changes after the 2016 supreme court ruling.
+```{r Provinical_Data_Overview}
+
+BCprovincial <- BCdatastripped %>% 
+  filter(DATA_LEVEL == "PROVINCE LEVEL",
+         PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")  %>% 
+  mutate(Public_population = BCpopulation$TOTAL_ENROLMENT[SCHOOL_YEAR-8],
+         prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
+  mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995)
+
+ ggplot(BCprovincial, aes(x = SCHOOL_YEAR, y = prevalence)) +
+  geom_line(color = "cornflowerblue") +
+   facet_wrap(~SPECIAL_NEEDS_CODE) +
+   labs(title = "BC Provincial Prevalence of Students with Exceptionalities by Category",
+        x = "School Year",
+        y = "Prevalence Rate")
+```
+
+
+```{r cleaning Oregon data}
+primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
+cleanest_primo <-primodata %>% 
+  remove_empty(which = c("rows", "cols")) %>% 
+  clean_names()
+
+cleanest_primo <- cleanest_primo %>% 
+  select(-six_to_twentyone_total, -x24)
+
+cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
+cleanest_primo2
+
+fresh_primo <- cleanest_primo2 %>% 
+  pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
+  mutate(age = parse_number(age), 
+         year = parse_number(year))
+
+fresh_primo %>% 
+  group_by(year, disability) %>% 
+  summarize(total=sum(frequency, na.rm=TRUE))
+
+```
+
+This is roughly in line with Oregon's designation data, showing that there were no state-wide anomalies after the year 2016.
+```{r}
+#this is more in line with the BC graphing
+ggplot(fresh_primo, aes(year, frequency))+
+ geom_smooth(color = "cornflowerblue") +
+ theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+ facet_wrap(~disability)+
+    labs(color="frequency", x= "Year", y="Student Count", title = "Oregon Headcount of Students with Exceptionalities by Category")
+
+```
+
+Even for diagnostically malleable categories, such as students classified in Oregon has having an "emotional disturbance," or in BC students requiring a "high behavioural need", Oregon and BC had highly similar trends.
+
+``` {r BCOR combo}
+
+combined <- fresh_primo %>% 
+  as_tibble() %>% 
+    mutate(ORheadcount = fct_recode(disability,
+                          "Deafblind" = "DEAF-BLINDNESS",
+                          "Moderate+ ID" = "INTELLECTUAL DISABILITY",
+                          "High Behavioural Need" = "EMOTIONAL DISTURBANCE",
+                          "Visual Impairment" = "VISUAL IMPAIRMENT",
+                          "Deaf or Hard of Hearing" = "HEARING IMPAIRMENT",
+                          "Autism" = "AUTISM",
+                          "Mild ID" = "INTELLECTUAL DISABILITY")) %>% 
+  filter(ORheadcount == "High Behavioural Need") %>% 
+  group_by(year) %>% 
+  summarise(frequency = sum(frequency))
+
+BCAutism <- BCprovincial %>% 
+  filter(SPECIAL_NEEDS_CODE == "High Behavioural Need")
+           
+ggplot() +
+  geom_smooth(data = combined, aes(x = year, y = frequency, color = "Oregon")) +
+  geom_smooth(data = BCAutism, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS, color = "British Columbia"), se = FALSE) +
+  labs(title = "BC and Oregon Headcount of Students with Chronic Health Conditions",
+        x = "School Year",
+        y = "Headcount",
+       color = "Legend",
+        scale_color_manual(labels = c("Oregon", "British Columbia"), values = c("blue", "red")))
+
+
+```
+
+
+Then, we examine the rural versus urban trends and notice a few things...
+
+```{r urban vs. rural}
+
+bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
+
+district_class <- bc_data_district_classification %>%
+  select("SCHOOL_YEAR",
+         "DATA_LEVEL",
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER",
+         "DISTRICT_NAME",
+         "DISTRICT_POPULATION_2016",
+         "DISTRICT_CLASSIFICATION",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  filter(DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School") %>%
+  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
+    select(-"name")
+
+#Attempting to make columns numeric
+#view(district_class) #Need cols 6 & 8
+
+x <- c(6,8)
+district_class[ , x] <- apply(district_class[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+#
+```
+
+
+``` {r District Census Population Table}
+#Data Prep
+census_data <- district_class %>% 
+  janitor::clean_names() %>% 
+  group_by(district_name, district_number) %>% 
+  mutate(est_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c("school_year",
+            "data_level",
+            "public_or_independent",
+            "special_needs_code",
+            "number_of_students")) %>% 
+  distinct()
+
+#Table
+apa_table(
+  census_data,
+    digits = 0,
+  caption = "District Classification by Population According to 2016 Census",
+  note = "Number of students is estimated and does not include masked data.",
+  col.names = c("District Number",
+            "District Name",
+            "Population",
+            "Classification",
+            "Number of Students")
+)
+```
+
+
+```{r rural play}
+#Data Prep
+rural_districts <- district_class %>% 
+  janitor::clean_names() %>% 
+  filter(district_classification == "Rural") %>% 
+  select(-c("data_level",
+            "public_or_independent",
+            "district_population_2016"))
+
+#Viz - Totals by Code
+ggplot(rural_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Total Students by Exceptionality",
+       x = "Exceptionality",
+       y = "Number of Students")
+
+#Data for Rural Totals (No categories)
+rural_totals <- rural_districts %>% 
+  group_by(school_year, district_name, district_number) %>% 
+  mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+#Data Viz Totals/Time
+ggplot(rural_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Students with Exceptionalities in Rural Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
+
+#What's going on with Prince George? Why is there such a steep drop in 2006?
+pg <- rural_districts %>% 
+  filter(district_name == "Prince George") %>% 
+  as_tibble()
+
+pg_sums <- pg %>% 
+  group_by(school_year) %>% 
+  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(district_number, special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+
+#What's happening by Dx?
+pg_dx_sum <- pg %>% 
+  group_by(school_year, special_needs_code) %>% 
+  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(district_number, district_classification, number_of_students)) %>% 
+  distinct()
+
+ggplot(pg_dx_sum, aes(school_year, student)) +
+  geom_col() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  facet_wrap(~special_needs_code) +
+  labs(title = "Students with Exceptionalities in Prince George 1999-2020",
+       x = "School Year",
+       y = "Number of Students")
+# Need some explanation here for explaining facet wrap
+
+#What's going on with gifted?????
+pg_gifted <- pg %>% 
+  filter(special_needs_code == "P") %>% 
+  select(-c(district_number, district_classification))
+
+ggplot(pg_gifted, aes(school_year, number_of_students)) +
+  geom_col() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Gifted Students in Prince George 1999-2020",
+       subtitle = "Note: Totals under 10 are masked by district in reporting.",
+       x = "School Year",
+       y = "Total Students")
+
+##Looking into Sooke (SD 62 - pop. 9,269) categorized under Victoria so urban but technically rural
+## In progress
+
+sooke <- district_class %>%
+  filter(DISTRICT_NAME == "Sooke") %>%
+  as_tibble()
+
+ggplot(sooke, aes(SPECIAL_NEEDS_CODE)) +
+  facet_wrap(~SCHOOL_YEAR)
+  geom_col()
+```
+
+```{r urban play}
+#Data Prep
+urban_districts <- district_class %>% 
+  janitor::clean_names() %>% 
+  filter(district_classification == "Urban") %>% 
+  select(-c("data_level",
+            "public_or_independent",
+            "district_population_2016"))
+
+urban_totals <- urban_districts %>% 
+  group_by(school_year, district_name, district_number) %>% 
+  mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
+  select(-c(special_needs_code, district_classification, number_of_students)) %>% 
+  distinct()
+
+#Data Viz Totals/Time
+ggplot(urban_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Students with Exceptionalities in Urban Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
+
+#Viz - Totals by Code
+ggplot(urban_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Total Students by Exceptionality",
+       x = "Exceptionality",
+       y = "Number of Students")
+```
