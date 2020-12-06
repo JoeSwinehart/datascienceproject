@@ -72,6 +72,8 @@ library(tidyverse)
 library("readxl")
 library(janitor)
 library(esc)
+library(dplyr)
+install.packages("splom")
 
 BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
 
@@ -129,6 +131,46 @@ Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YE
 Educational policy can impact practice by reorganizing educational delivery and reconceptualizing the meaning and impact of education on society (Ball, 1998). Educational policy exists as a mechanism to drive changes in school buildings that result in socially important outcomes (e.g., increasing literacy acquisition through improved instruction, reducing instances of bullying through prevention programs). However, the relationship between policy and practice in Western formal systems of education is often unclear, misdirected, or atheoretical (Cohen et al., 2009). Leveraging the power of policy as a change agent for the delivery and conceptualization of education stands to benefit a significant proportion of students (Swanson, 2007).
  
 When policy is enacted, the intended outcomes are often not realized for months, years, or decades (Gu et al., 2018). For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores (Luke & McArdle, 2009). Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest (Michelmore & Dynarski, 2017).
+
+```{comprehensive display}
+
+g_vic <- district_class %>%
+  filter(DISTRICT_NAME == "Greater Victoria") %>%
+  mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
+         SCHOOL_YEAR = as.numeric(SCHOOL_YEAR),
+         SPECIAL_NEEDS_CODE = as.factor(SPECIAL_NEEDS_CODE),
+          SPECIAL_NEEDS_CODE = as.numeric(SPECIAL_NEEDS_CODE),
+         NUMBER_OF_STUDENTS = as.factor(NUMBER_OF_STUDENTS),
+         NUMBER_OF_STUDENTS = as.numeric(NUMBER_OF_STUDENTS)) %>%
+  select("SCHOOL_YEAR",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  as_tibble()
+
+install.packages("GGally")
+library(GGally)
+
+#best one yet! Box-and-whisker plot
+ggpairs(g_vic,
+        upper = list(continuous = ggally_dot_and_box, combo = ggally_box_no_facet),
+        lower = list (continuous = "smooth",
+                      combo = "facetdensity",
+                      mapping = aes(color = SPECIAL_NEEDS_CODE)))
+
+#let's try bar graph
+ggpairs(g_vic,
+        upper = list(continuous = ggally_barDiag, combo = ggally_barDiag),
+        lower = list (continuous = "smooth",
+                      combo = "facetdensity",
+                      mapping = aes(color = SPECIAL_NEEDS_CODE)))
+        
+ggally_dot_and_box(g_vic, 
+                   mapping = ggplot2::aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS),
+                   boxPlot = TRUE) +
+  theme(axis.text.x = element_blank())
+
+
+```
  
 ## Current Study
 Our project primarily examines two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets offer insights to the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 2002/2003 to the most recent data from 2019/2020. The OR head counts are drawn from an annual dataset spanning 2002 through 2020. Levels of categorization include school-, district-, and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
