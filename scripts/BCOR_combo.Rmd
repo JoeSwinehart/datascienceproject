@@ -82,8 +82,10 @@ library("readxl")
 library(janitor)
 library(esc)
 
+#One data set for global use and tidying for code chunks
 BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
 
+#reading in and initial tidying provincial-level population data
 BCpopulation <- read_excel(here("data", "BCpopdata.xlsx")) %>% 
   select("SCHOOL_YEAR",
          "TOTAL_ENROLMENT",
@@ -92,6 +94,7 @@ BCpopulation <- read_excel(here("data", "BCpopdata.xlsx")) %>%
   mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
          SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
 
+#reading in and initial tidying district-level population data
 BCpop_district <- read_excel(here("data", "BCdistrictpop.xlsx")) %>% 
   select("SCHOOL_YEAR",
          "TOTAL_ENROLMENT",
@@ -99,8 +102,8 @@ BCpop_district <- read_excel(here("data", "BCdistrictpop.xlsx")) %>%
   mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
          SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
 
+#reading in and initial tidying Provincial headcount data on SPED categories by district and province
 BCdatastripped <- BCdata %>% 
-    #Makayla & Janette - may want to include more columns here with the select for our global "BCdatastripped" df
     select("SCHOOL_YEAR", 
          "DATA_LEVEL", 
          "SPECIAL_NEEDS_CODE", 
@@ -126,8 +129,9 @@ BCdatastripped <- BCdata %>%
            SCHOOL_YEAR = as.factor(SCHOOL_YEAR), 
            NUMBER_OF_STUDENTS = as.integer(NUMBER_OF_STUDENTS),
            SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
-  filter(SCHOOL_YEAR >= 9)
+  filter(SCHOOL_YEAR >= 9) #aligning data to fit chronologically with OR data
 
+#Initializing data set for calculating prevalence by joining student population data with SPED headcount data
 BC_districtdata <- BCdatastripped %>% 
   filter(DATA_LEVEL == "DISTRICT LEVEL")
 Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YEAR", "DISTRICT_NUMBER"), all.x = TRUE)
@@ -150,7 +154,7 @@ Finally, we will also explore differences between urban and rural school distric
 Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over 15 years: 
 
 ```{r Provinical_Data_Overview}
-
+#cleaning provincial-level data and calculating prevalence data
 BCprovincial <- BCdatastripped %>% 
   filter(DATA_LEVEL == "PROVINCE LEVEL",
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")  %>% 
@@ -158,6 +162,7 @@ BCprovincial <- BCdatastripped %>%
          prevalence = NUMBER_OF_STUDENTS/Public_population) %>% 
   mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995)
 
+#Initial plot showing each prevalence rates of designation categories
  ggplot(BCprovincial, aes(x = SCHOOL_YEAR, y = prevalence)) +
   geom_line(color = "cornflowerblue") +
    facet_wrap(~SPECIAL_NEEDS_CODE) +
@@ -252,6 +257,7 @@ ggplot(fresh_primo, aes(year, frequency))+
 
 ``` {r BCOR combo}
 
+#preparing OR data to fit with BC data to map on to one ggplot. Exceptionality category head count is summed by year.
 combined <- fresh_primo %>% 
   as_tibble() %>% 
     mutate(ORheadcount = fct_recode(disability,
@@ -266,9 +272,11 @@ combined <- fresh_primo %>%
   group_by(year) %>% 
   summarise(frequency = sum(frequency))
 
+#selecting the exceptionality category of interest from BC data to match cleaned OR data
 BCAutism <- BCprovincial %>% 
   filter(SPECIAL_NEEDS_CODE == "High Behavioural Need")
-           
+   
+#One figure that shows head counts in each of OR and BC for one exceptionality as an exemplar   
 ggplot() +
   geom_smooth(data = combined, aes(x = year, y = frequency, color = "Oregon")) +
   geom_smooth(data = BCAutism, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS, color = "British Columbia"), se = FALSE) +
@@ -284,47 +292,61 @@ ggplot() +
 
 ``` {r calculatingES}
 
+#hard coding the 14 urban school districts
 urban <- c("023", "034", "035", "036", "037", "038", "039", "040", "041", "042", "043", "044", "045", "046")
 
+#Rural school districts prevalence for one exceptionality, then grouped 4 years preceding 2016, and 3 years post-2016. Code structure used for running multiple exceptionality categories (behavioural needs, learning disability, etc)
 ESdata <- Prevalence_data %>% 
   filter(SPECIAL_NEEDS_CODE == "Mild Behavioural Need",
          !DISTRICT_NUMBER %in% urban)  %>% 
   mutate(prevalence = NUMBER_OF_STUDENTS/TOTAL_ENROLMENT) %>% 
   mutate(SCHOOL_YEAR = SCHOOL_YEAR+1995,
          pre16 = ifelse(SCHOOL_YEAR <= 2016, "before16", "after16")) %>%
+  filter(SCHOOL_YEAR >= 2013) %>% 
   group_by(pre16) %>% 
   pivot_wider(
     names_from = pre16,
     values_from = prevalence
   )
 
-
-# 1) group_by for all students with SPED, then run that against public population to sort out overall prevelance of SPED
-# 2) 
-
+#assigning an object to hold pre-2016 group values
 presup <- ESdata %>% 
   drop_na(before16) %>% 
   select(before16)
 as.numeric(unlist(presup))
-presup_count <- count(presup)
 
+#assigning an object to hold pre-2016 group values
 postsup <- ESdata %>% 
   drop_na(after16) %>% 
   select(after16)
 as.numeric(unlist(postsup))
-postsup_count <- count(postsup)
 
+#assigning variables as objects that are needed to calculate effect size
+presup_count <- count(presup)
 presup_mean <- sapply(presup, mean)
 presup_sd <- sapply(presup, sd)
+postsup_count <- count(postsup)
 postsup_mean <- sapply(postsup, mean)
 postsup_sd <- sapply(postsup, sd)
 
+#calculating Hedges' g
 esc_mean_sd(grp1m = presup_mean, grp1sd = presup_sd, grp1n = presup_count, grp2m = postsup_mean, grp2sd = postsup_sd, grp2n = postsup_count, es.type = "g")
+
+#running two-sample t-test for complete statistical test information
+t.test(presup, postsup)
 
 ```
 
 # Methods
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. 
+
+
+Here is the equation for Hedges' g: $Hedges' g = \frac{M_1 + M_2}{SD_{pooled}} $
+``` {r methods}
+
+
+```
+
 
 ## Participants
 
