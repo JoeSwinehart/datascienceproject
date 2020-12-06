@@ -31,29 +31,19 @@ affiliation:
 
 authornote: |
   Janette Avelar, University of Oregon College of Education
+  
   David Fainstein, University of Oregon College of Education
+  
   Joe Swinehart, Behavioral Research & Teaching
+  
   Makayla Whitney, University of Oregon College of Education
 
   Project completed using RStudio, GitKraken, GitHub, and papaja
   
   Contact: dfainste@uoregon.edu
 abstract: |
-  This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministrty of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories. 
-  
-  Two to three sentences of **more detailed background**, comprehensible  to scientists in related disciplines.
-  
-  One sentence clearly stating the **general problem** being addressed by  this particular study.
-  
-  One sentence summarizing the main result (with the words "**here we show**" or their equivalent).
-  
-  Two or three sentences explaining what the **main result** reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.
-  
-  One or two sentences to put the results into a more **general context**.
-  
-  Two or three sentences to provide a **broader perspective**, readily comprehensible to a scientist in any discipline.
-  
-  <!-- https://tinyurl.com/ybremelq -->
+  This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministry of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories. 
+
   
 keywords          : "Vancouver, British Columbia, Oregon, Special Education, SpEd"
 wordcount         : "0<n<1,000,000"
@@ -140,7 +130,7 @@ Educational policy can impact practice by reorganizing educational delivery and 
  
 When policy is enacted, the intended outcomes are often not realized for months, years, or decades (Gu et al., 2018). For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores (Luke & McArdle, 2009). Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest (Michelmore & Dynarski, 2017).
  
-##Current Study
+## Current Study
 Our project primarily examines two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets offer insights to the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 2002/2003 to the most recent data from 2019/2020. The OR head counts are drawn from an annual dataset spanning 2002 through 2020. Levels of categorization include school-, district-, and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
  
 We intend to explore several questions regarding longitudinal trends where educational policy may have impacted special education practice. First, we will use descriptive statistics to describe trends in disability prevalence over time. The initial analyses will inform a discussion on developmental trajectories by illustrating shifts in prevalence growth from static to linearly increasing based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data (e.g., common age of onset for diagnosis per category and diagnostic patterns over time). In studying the differences and similarities between OR and BC datasets, we will also engage in a discussion on diagnostic terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM; American Psychological Association, 2013), in part as a response to a challenge set by differing terminology between BC and OR categorization (i.e., the United States federal guidelines for exceptionality designation are similar but not identical to exceptionality designation guidelines in BC).
@@ -149,14 +139,14 @@ Second, we hope to closely analyze any changes, or lack thereof, within the BC d
  
 Finally, we will explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. School district level data is useful for examining longitudinal trends for individual administrative units (e.g., superintendent’s office and director(s) of inclusive education); however, this level of data analysis cannot speak to province-wide trends in the culture of superordinate legal directives which impact swift policy changes. Given this, we will run analyses on both exemplar districts to highlight localized policy impacts on practice and amalgamated districts (e.g., school districts defined as rural by Statistics Canada) to investigate cultural shifts in the policy-to-practice association.
 
-##Problem Statement and RQs
+## Problem Statement and RQs
 In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are generally higher than a national-level comparison with the US, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
  
 With respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers:
 (1) Do student prevalence rates of disability or disorder decrease after the supreme court ruling of 2016 against existing trends?
 (2) Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
  
-#Methods
+# Methods
  
 Datasets were extracted from publicly available sources. Specifically, the BC Ministry of Education, Oregon Department of Education, and Statistics Canada are the data sources for the current study. Note that the primary jurisdiction of interest is BC, and OR is selected as a reasonable basis of comparison (i.e., similar geography, population, and population growth rate). Further, BC has distinct educational policy from OR as Canadian education is administered entirely by provincial ministries of education and special education law is remarkably different between BC and OR. Together, these datasets help achieve three objectives for acquiring data appropriate to the research questions:
 Headcount data at multiple levels (e.g., district and state or province) for students with exceptionalities, disaggregated by category of exceptionality, year, and location.
@@ -167,13 +157,13 @@ The nature of the current study is intentionally exploratory within a systematic
 
 The three datasets were used for analysis in R (cite R) for reproducibility and data visualization. All code for analysis and data representation is publicly available for reproducibility (https://github.com/JoeSwinehart/datascienceproject). There are several caveats for data use and cleaning in the current analysis. First, the BC and OR datasets were not a completely parallel comparison, because the OR data set includes a broader age range of students (ages 3 - 21) as compared to the BC data set (ages 5 - 19). The Oregon data set was pared down to include a similar age range to BC data; however, it is worth noting that differences in age range may represent different approaches to diagnostic categorization (e.g., intellectual disability in BC can be diagnosed at age 5; whereas the Oregon data follows IDEA where it is more likely young children will be categorized as developmentally delayed). Second, data masking necessitates a decision-point for analysis. Specifically, the BC Ministry of Education data masks all cells with headcounts below 10 students, therefore our analyses left out these cases when computing effect sizes for provincial-level data. Data masking was most prominently an issue when examining school district-level data in BC, as smaller school districts often masked low-incidence exceptionality data. When appropriate, masked data is assigned a conservative estimate of (n = 9) such that enough data units were included in effect size comparisons. Third, Canadian census data from 2016 is the basis of classification for district geographical location (e.g., urban, suburban, rural, exurban). Due to the geographical distribution of population in BC, only two categories are used for the current analyses: urban and rural. Fourth, due to low population numbers with independent schools in BC, the current study will only examine public school data for the years 2002 - 2019.
 
-##Analysis Plan
+## Analysis Plan
 The majority of the analyses for the current study are descriptive in nature. The descriptive analysis includes a table or visual representation of prevalence rates or headcounts of students with exceptionalities over time. As the current study is examining anomalies in trend data, trends that break the longitudinal trendline (e.g., sudden drop in prevalence after a decade of linear increase in prevalence) may be examined further. That is, effect sizes between two groups (e.g., group one is three years before a policy change, and group two is three years after a policy change) may be examined to detect the magnitude of differences between groups if they are hypothesized to represent a change in practice stemming from policy implementation. More specifically on the calculation of effect sizes, the Hedge’s g statistic will be used because of the robustness against unequal group sizes.
 
 $$
 Hedges' g = \frac{M_1 + M_2}{SD_{pooled}} 
 $$
-#Results
+# Results
 Writing on results here...
 
 First, we see that the BC trends do not show significant changes after the 2016 supreme court ruling.
@@ -442,3 +432,8 @@ ggplot(urban_districts,
        x = "Exceptionality",
        y = "Number of Students")
 ```
+
+# Discussion
+Regarding the first research question, it is apparent that the 2016 supreme court decision did not impact any of the 12 designation categories as hypothesized. The trendlines for each of the exceptionality categories remained consistent post-2016 in BC and this mapped on to Oregon trends in exceptionality designation reasonably closely. This finding suggests that the resources and practices around supporting student 
+
+The rapid decrease in students identified as gifted in rural districts between the years of 2004 and 2007 cannot be explained by one sole factor in this exploratory analysis. With respect to the speculative nature of this assertion, the authors assume that educational policy at the provincial level impacts educational practice across school districts. In 2006, the British Columbia Ministry of Education released Special education services: A manual of policies, procedures and guidelines, which explicitly states the acceleration programming that should be afforded to students with exceptional academic talent (Kanevsky & Clelland, 2016). In fact, this 2006 version of the manual was a revision of the original 1995 manual, and this initial version included scant guidance on service provision to gifted students. This 2016 shift in policy links to a higher degree of resources afforded to gifted students through “independent, guided education” (p. 52). Given the additional resources needed to properly implement gifted educational services, rural school districts may have de-designated students and sought other ways to provide instruction that meets the needs of their students. For example, Lo et al. (2019) suggest that the British Columbia Ministry of Education’s recent curriculum update makes amends for traditional test-and-place gifted student support model by giving educators the tools and inclusive framework to offer a rich, meaningful education to all students with exceptionalities. 
