@@ -73,7 +73,6 @@ library("readxl")
 library(janitor)
 library(esc)
 library(dplyr)
-install.packages("splom")
 
 BCdata <- read_excel(here("data", "bcsped_headcount.xlsx"))
 

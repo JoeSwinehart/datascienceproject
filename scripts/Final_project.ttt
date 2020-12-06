@@ -1,0 +1,57 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:District Census Population Table}District Classification by Population According to 2016 Census}
+
+\begin{tabular}{lllll}
+\toprule
+District Number & District Name & Population & Classification & Number of Students\\
+\midrule
+022 & Vernon & 61,334 & Rural & 16,768\\
+023 & Central Okanagan & 194,882 & Urban & 43,609\\
+028 & Quesnel & 23,146 & Rural & 9,036\\
+033 & Chilliwack & 101,512 & Urban & 28,997\\
+034 & Abbotsford & 180,518 & Urban & 38,369\\
+035 & Langley & 2,463,431 & Urban & 43,043\\
+036 & Surrey & 2,463,431 & Urban & 143,222\\
+037 & Delta & 2,463,431 & Urban & 43,897\\
+038 & Richmond & 2,463,431 & Urban & 40,221\\
+039 & Vancouver & 2,463,431 & Urban & 132,584\\
+040 & New Westminster & 2,463,431 & Urban & 11,714\\
+041 & Burnaby & 2,463,431 & Urban & 47,952\\
+042 & Maple Ridge-Pitt Meadows & 2,463,431 & Urban & 33,633\\
+043 & Coquitlam & 2,463,431 & Urban & 88,291\\
+044 & North Vancouver & 2,463,431 & Urban & 39,657\\
+045 & West Vancouver & 2,463,431 & Urban & 11,732\\
+046 & Sunshine Coast & 2,463,431 & Urban & 13,283\\
+047 & Powell River & 16,783 & Rural & 6,816\\
+052 & Prince Rupert & 12,687 & Rural & 7,222\\
+053 & Okanagan Similkameen & 43,432 & Rural & 6,596\\
+057 & Prince George & 86,622 & Rural & 39,443\\
+061 & Greater Victoria & 367,770 & Urban & 50,051\\
+062 & Sooke & 367,770 & Urban & 24,126\\
+063 & Saanich & 367,770 & Urban & 19,533\\
+067 & Okanagan Skaha & 43,432 & Rural & 19,156\\
+068 & Nanaimo-Ladysmith & 104,936 & Urban & 30,870\\
+070 & Port Alberni & 25,112 & Rural & 11,654\\
+073 & Kamloops-Thompson & 103,811 & Urban & 32,620\\
+075 & Mission & 33,261 & Rural & 13,858\\
+079 & Cowichan Valley & 44,451 & Rural & 21,479\\
+081 & Fort Nelson & 18,307 & Rural & 1,319\\
+083 & North Okanagan-Shuswap & 43,432 & Rural & 23,720\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Number of students is estimated and does not include masked data.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}
