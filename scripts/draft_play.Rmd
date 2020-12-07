@@ -87,6 +87,8 @@ BCdatastripped <- BCdata %>%
          "PUBLIC_OR_INDEPENDENT") %>% 
   filter(DATA_LEVEL == "PROVINCE LEVEL", 
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
+
+# Here I learned to use the package called "readxl", which can help to read xlsx. fless. I will try this and see what is the benefit of this package! 
 ```
 
 
@@ -139,7 +141,7 @@ BCdatastripped_spedcat <- BCdatastripped %>%
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
 
-
+# Strengh 4: The reconding part is really smart! 
  ggplot(BCdatastripped_spedcat, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
@@ -147,7 +149,8 @@ BCdatastripped_spedcat <- BCdatastripped %>%
    labs(title = "BC Provincial Headcount of Students with Exceptionalities by Category",
         x = "School Year",
         y = "Headcount")
-#strength 1: I really like the data visualization. It is very clear! 
+ 
+ # Strength 1: I would like to comment on their writing, it is very clear and straightfoward! 
 ```
 
 ```{r urban vs. rural}
@@ -169,7 +172,7 @@ district_class <- bc_data_district_classification %>%
   pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
     select(-"name")
 
-# strength 2: I really like the data cleaning part. They used pivot_longer to make the data more clear! 
+# strength 2: I really like the data cleaning part. They used pivot_longer to cluster the district classfication. This makes the dataset more clear and clean! 
 ```
 
 The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs. rural classifications were made based on the district's population on the 2016 census.  If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural. 
@@ -200,12 +203,11 @@ fresh_primo <- cleanest_primo2 %>%
   pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
   mutate(age = parse_number(age), 
          year = parse_number(year))
-
+# Strength 4: This data cleanig is really cool and smart! 
 fresh_primo %>% 
   group_by(year, disability) %>% 
   summarize(total=sum(frequency, na.rm=TRUE))
 
-# This is the part the I learned. I learned the parse_number function to .This drops any non-numeric characters before or after the first number. The grouping mark specified by the locale is ignored inside the number.
 ```
 
 ```{r Oregon plot}
@@ -235,7 +237,7 @@ ggplot(fresh_primo, aes(year, frequency))+
  facet_wrap(~disability)+
     labs(color="frequency", x= "Year", y="Student Count", title = "Trends in Frequency")
 
-#improvement: I am not sure what does the second ```r``` includes. maybe you could delete. 
+#improvement: For better describing the data, maybe they could considering adding one or two descriptive tables with some descriptive statistics. 
 ```
 
 ## Procedure
