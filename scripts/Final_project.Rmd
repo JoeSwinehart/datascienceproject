@@ -217,6 +217,36 @@ BCprovincial <- BCdatastripped %>%
         y = "Prevalence Rate")
 ```
 
+```{r Provincial Data Table}
+# A table showing special need designation by year in BC.
+need_des <- BCdata %>% 
+  janitor::clean_names() %>% 
+  select(-c(data_level,
+            public_or_independent,
+            district_number,
+            district_name,
+            school_number,
+            school_name,
+            special_needs_code)) %>% 
+  group_by(school_year, special_needs_desc) %>% 
+  mutate(number_of_students = sum(number_of_students, na.rm = TRUE)) %>% 
+  distinct() %>% 
+  pivot_wider(names_from = school_year,
+              values_from = number_of_students) %>% 
+  select(c("1996/1997",
+           "2001/2002",
+           "2005/2006",
+           "2010/2011",
+           "2015/2016",
+           "2019/2020")) %>% 
+  rename("Special Needs" = special_needs_desc)
+
+apa_table(need_des,
+          caption = "Special Needs Designation by Select Years (BC)",
+          note = "NAs indicate masked data where students <10")
+```
+
+
 
 ```{r cleaning Oregon data}
 primodata <- read_excel(here("data", "primo_merged_oregon_data.xlsx"))
