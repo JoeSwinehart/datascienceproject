@@ -136,7 +136,7 @@ Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YE
 # Introduction
 Educational policy can impact practice by reorganizing educational delivery and reconceptualizing the meaning and impact of education on society [@ball_1998]. Educational policy exists as a mechanism to drive changes in school buildings that result in socially important outcomes (e.g., increasing literacy acquisition through improved instruction, reducing instances of bullying through prevention programs). However, the relationship between policy and practice in Western formal systems of education is often unclear, misdirected, or atheoretical [@cohen_2009]. Leveraging the power of policy as a change agent for the delivery and conceptualization of education stands to benefit a significant proportion of students [@swanson_2007].
  
-When policy is enacted, the intended outcomes are often not realized for months, years, or decades [@gu-2018]. For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores [@luke_2009]. Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest [@michelmore_2017].
+When policy is enacted, the intended outcomes are often not realized for months, years, or decades [@gu_2018]. For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores [@luke_2009]. Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest [@michelmore_2017].
 
 ```{comprehensive display}
 
@@ -261,16 +261,16 @@ cleanest_primo <- cleanest_primo %>%
   select(-six_to_twentyone_total, -x24)
 
 cleanest_primo2 <- cleanest_primo [!(cleanest_primo$disability=="TOTAL (SUM OF ALL OF THE ABOVE)" |cleanest_primo$disability=="OTHER HEALTH IMPAIRMENT" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY" | cleanest_primo$disability=="SPECIFIC LEARNING DISABILITY"),]
-cleanest_primo2
+#cleanest_primo2
 
 fresh_primo <- cleanest_primo2 %>% 
   pivot_longer(starts_with("x"), names_to = "age", values_to = "frequency") %>% 
   mutate(age = parse_number(age), 
          year = parse_number(year))
 
-fresh_primo %>% 
-  group_by(year, disability) %>% 
-  summarize(total=sum(frequency, na.rm=TRUE))
+#fresh_primo %>% 
+  #group_by(year, disability) %>% 
+  #summarize(total=sum(frequency, na.rm=TRUE))
 
 ```
 
@@ -397,7 +397,8 @@ apa_table(
 
 A closer look at the districts in Figure 5 details how overall urban areas appear more stable over time compared to urban areas, as in figure 6, which appear to have clustering trends. Between 1999 and 2004/2005 the number of students with exceptionalities appear fairly stable. Rural districts then suffer a noticeable drop between 2004/2005 and 2005/2006, specifically in the district of Prince George. The years following present a steady decline through 2016, which then begins a steady upward trajectory. Both urban and rural areas alike exhibit a similar dramatic rise between 1998/1999 and 1999/2000, which we attribute to data reporting changes, but may be worth a closer look.
 
-There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (ps > 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (t(239) = -2.113, p = 0.036, g = 0.261, CI[-0.504, -0.019]), Learning Disability (t(262) = -1.984, p = 0.483, g = 0.230, CI[-0.453, -0.007]), and Chronic Health (t(255) = -2.068, p = 0.040, g = 0.247, CI[-0.479, -0.015]). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges’ g > 0.2, and g < 0.5), but did show an increasing trend post-2016 (t(195) = -0.879, p = 0.380, g = 0.120, CI[-0.383, 0.144]).
+There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (*p*s > 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (*t*(239) = -2.113, *p* = 0.036, *g* = 0.261, CI[-0.504, -0.019]), Learning Disability (*t*(262) = -1.984, *p* = 0.483, *g* = 0.230, CI[-0.453, -0.007]), and Chronic Health (*t*(255) = -2.068, *p* = 0.040, *g* = 0.247, CI[-0.479, -0.015]). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges’ *g* > 0.2, and *g* < 0.5), but did show an increasing trend post-2016 (*t*(195) = -0.879, *p* = 0.380, *g* = 0.120, CI[-0.383, 0.144]).
+
 
 ```{r urban and rural data}
 #Data for Rural Totals (No categories)
