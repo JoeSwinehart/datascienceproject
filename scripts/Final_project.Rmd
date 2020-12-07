@@ -94,7 +94,6 @@ BCpop_district <- read_excel(here("data", "BCdistrictpop.xlsx")) %>%
          SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)+8)
 
 BCdatastripped <- BCdata %>% 
-    
     select("SCHOOL_YEAR", 
          "DATA_LEVEL", 
          "SPECIAL_NEEDS_CODE", 
@@ -138,8 +137,33 @@ Educational policy can impact practice by reorganizing educational delivery and 
  
 When policy is enacted, the intended outcomes are often not realized for months, years, or decades [@gu_2018]. For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores [@luke_2009]. Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest [@michelmore_2017].
 
-```{comprehensive display}
+```{correllogram}
 
+#cleaning data
+bc_data_district_classification <- read_excel(here("data", "bc_data_district_classification.xlsx"))
+
+district_class <- bc_data_district_classification %>%
+  select("SCHOOL_YEAR",
+         "DATA_LEVEL",
+         "PUBLIC_OR_INDEPENDENT",
+         "DISTRICT_NUMBER",
+         "DISTRICT_NAME",
+         "DISTRICT_POPULATION_2016",
+         "DISTRICT_CLASSIFICATION",
+         "SPECIAL_NEEDS_CODE",
+         "NUMBER_OF_STUDENTS") %>%
+  filter(DATA_LEVEL == "DISTRICT LEVEL",
+         PUBLIC_OR_INDEPENDENT == "BC Public School") %>%
+  pivot_longer(DISTRICT_CLASSIFICATION, values_drop_na = TRUE, values_to = "DISTRICT_CLASSIFICATION") %>% 
+    select(-"name")
+
+#Attempting to make columns numeric
+#view(district_class) #Need cols 6 & 8
+
+x <- c(6,8)
+district_class[ , x] <- apply(district_class[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+#creating data for cor
 g_vic <- district_class %>%
   filter(DISTRICT_NAME == "Greater Victoria") %>%
   mutate(SCHOOL_YEAR = as.factor(SCHOOL_YEAR),
