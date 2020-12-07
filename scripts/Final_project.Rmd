@@ -251,7 +251,14 @@ fresh_primo %>%
 ```
 
 This is roughly in line with Oregon's designation data, showing that there were no state-wide anomalies after the year 2016. Similar to the BC data, we see a steady increase in students identified under the autism diagnosis, while most categories remained relatively stable over all of the years surveyed. The recent growth in Developmental Delays and Emotional Disturbance would be worth watching in future years, but we can reasonably predict that more rigid  categories like Deaf-Blindness and Traumatic Brain Injury will remain stable in the years to come.
+```{r Oregon plot}
 
+ggplot(fresh_primo, aes(age, frequency))+
+  geom_line(aes(color=disability))+
+  facet_wrap(~year)+
+    labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
+
+```
 Looking at Oregon disability prevalence by age gives us some idea of what happens to these categories over time, and also invites some questions. Most visually striking is the drop-off of students identified as having a Speech or Language Impairment, which makes sense, as it is addressed early in school and highly correctable. By middle school, most students have been exited from the speech program. At a striking contrast would be things that cannot be corrected, such as Deaf-Blindness or Traumatic Brain Injury. As expected, these numbers are extremely static over time. More thought-provoking would be the numbers for Emotional Disturbance. These tend to grow fairly steadily during elementary and middle school, but around age 16 the numbers actually start to decrease. One might wonder if this drop is due to these students no longer being part of the school system, as they may be far more likely to drop out and/or enter a different system as adjudicated youth. It certainly would be worth an additional look in the future.
 
 ```{r}
@@ -491,6 +498,7 @@ Data on the second research question on rural versus urban school district respo
 The rapid decrease in students identified as gifted in rural districts between the years of 2004 and 2007 cannot be explained by one sole factor in this exploratory analysis. With respect to the speculative nature of this assertion, the authors assume that educational policy at the provincial level impacts educational practice across school districts. In 2006, the British Columbia Ministry of Education released Special education services: A manual of policies, procedures and guidelines, which explicitly states the acceleration programming that should be afforded to students with exceptional academic talent (Kanevsky & Clelland, 2016). In fact, this 2006 version of the manual was a revision of the original 1995 manual, and this initial version included scant guidance on service provision to gifted students. This 2016 shift in policy links to a higher degree of resources afforded to gifted students through “independent, guided education” (p. 52). Given the additional resources needed to properly implement gifted educational services, rural school districts may have de-designated students and sought other ways to provide instruction that meets the needs of their students. For example, Lo et al. (2019) suggest that the British Columbia Ministry of Education’s recent curriculum update makes amends for the traditional test-and-place gifted student support model by giving educators the tools and inclusive framework to offer a rich, meaningful education to all students with exceptionalities. 
 
 # References
+
 RStudio Team (2020). RStudio: Integrated Development Environment for R.
   RStudio, PBC, Boston, MA URL http://www.rstudio.com/.
 
