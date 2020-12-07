@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.7)  7 DEC 2020 08:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.7)  7 DEC 2020 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -788,7 +788,10 @@ tex.map}
 ] [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[3] [4] [5] [6] [7] [8]
+[3] [4] [5] [6]
+Underfull \vbox (badness 7649) has occurred while \output is active []
+
+[7] [8]
 <Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf, id=92, 469.75
 5pt x 325.215pt>
 File: Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf Graphic f
@@ -802,260 +805,243 @@ Overfull \hbox (28.90639pt too wide) in paragraph at lines 232--233
 [][]  
  []
 
+
+Overfull \hbox (154.63289pt too wide) in paragraph at lines 238--269
+ [] 
+ []
+
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-34.
+73.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (36.58122pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.58122pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##    year  disability    x6    x7    x8    x9   x10   x11   
 x12   x13   x14   x15[] 
  []
 
 
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##    <chr> <chr>      <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <d
 bl> <dbl> <dbl> <dbl>[] 
  []
 
 
-Overfull \hbox (36.57422pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.57422pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  1 2002~ INTELLECT~   135   172   220   261   279   303   
 370   364   388   378[] 
  []
 
 
-Overfull \hbox (36.5322pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.5322pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  2 2002~ HEARING I~    46    66    69    67    79    78   
  69    70    53    72[] 
  []
 
 
-Overfull \hbox (36.56021pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.56021pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  3 2002~ SPEECH OR~  2502  2466  2443  2205  1894  1282   
 874   677   493   340[] 
  []
 
 
-Overfull \hbox (36.56721pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.56721pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  4 2002~ VISUAL IM~    18    27    25    16    12    26   
  19    24    31    19[] 
  []
 
 
-Overfull \hbox (36.58122pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.58122pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  5 2002~ EMOTIONAL~    81   178   241   292   347   433   
 504   487   549   548[] 
  []
 
 
-Overfull \hbox (36.56021pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.56021pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  6 2002~ ORTHOPEDI~    65    77    64    49    64    71   
  50    48    44    43[] 
  []
 
-[9 <./Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf>]
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
+
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  7 2002~ DEAF-BLIN~     0     2     0     0     1     0   
   2     0     4     2[] 
  []
 
 
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  8 2002~ MULTIPLE ~     0     0     0     0     0     0   
   0     0     0     0[] 
  []
 
-
-Overfull \hbox (36.5392pt too wide) in paragraph at lines 250--250
+[9 <./Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf>] [10]
+Overfull \hbox (36.5392pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ##  9 2002~ AUTISM       267   289   290   334   325   316   
 290   256   243   219[] 
  []
 
 
-Overfull \hbox (36.56721pt too wide) in paragraph at lines 250--250
+Overfull \hbox (36.56721pt too wide) in paragraph at lines 289--289
 []\T1/lmtt/m/n/12 ## 10 2002~ TRAUMATIC~     6    11    17    23    22    19   
  21    23    36    36[] 
  []
 
-[10]
-<Final_project_files/figure-latex/Oregon plot-1.pdf, id=107, 469.755pt x 325.21
+[11]
+<Final_project_files/figure-latex/Oregon plot-1.pdf, id=113, 469.755pt x 325.21
 5pt>
 File: Final_project_files/figure-latex/Oregon plot-1.pdf Graphic file (type pdf
 )
 <use Final_project_files/figure-latex/Oregon plot-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/Oregon plot-1.pdf  us
-ed on input line 272.
+ed on input line 311.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 272--273
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 311--312
+[][]  
+ []
+
+<Final_project_files/figure-latex/unnamed-chunk-1-1.pdf, id=114, 469.755pt x 32
+5.215pt>
+File: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type
+ pdf)
+<use Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>
+Package pdftex.def Info: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf
+  used on input line 315.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 315--316
 [][]  
  []
 
 
 Underfull \vbox (badness 1521) has occurred while \output is active []
 
-[11 <./Final_project_files/figure-latex/Oregon plot-1.pdf>]
-<Final_project_files/figure-latex/unnamed-chunk-1-1.pdf, id=117, 469.755pt x 32
-5.215pt>
-File: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type
- pdf)
-<use Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf
-  used on input line 276.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 276--277
-[][]  
- []
-
-<Final_project_files/figure-latex/BCOR combo-1.pdf, id=118, 469.755pt x 325.215
+[12 <./Final_project_files/figure-latex/Oregon plot-1.pdf>]
+<Final_project_files/figure-latex/BCOR combo-1.pdf, id=124, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/BCOR combo-1.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/BCOR combo-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/BCOR combo-1.pdf  use
-d on input line 280.
+d on input line 319.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 280--281
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 319--320
 [][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[12 <./Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>]
+[13 <./Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>]
 Underfull \vbox (badness 3291) has occurred while \output is active []
 
-[13 <./Final_project_files/figure-latex/BCOR combo-1.pdf>]
-Overfull \hbox (42.59622pt too wide) in paragraph at lines 294--342
+[14 <./Final_project_files/figure-latex/BCOR combo-1.pdf>]
+Overfull \hbox (42.59622pt too wide) in paragraph at lines 333--381
  [] 
  []
 
 
-LaTeX Warning: Float too large for page by 261.53809pt on input line 344.
+LaTeX Warning: Float too large for page by 261.53809pt on input line 383.
 
 
 Underfull \vbox (badness 3977) has occurred while \output is active []
 
-[14] [15]
-<Final_project_files/figure-latex/rainbow figure urban-1.pdf, id=155, 469.755pt
+[15] [16]
+<Final_project_files/figure-latex/rainbow figure urban-1.pdf, id=161, 469.755pt
  x 325.215pt>
 File: Final_project_files/figure-latex/rainbow figure urban-1.pdf Graphic file 
 (type pdf)
 <use Final_project_files/figure-latex/rainbow figure urban-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rainbow figure urban-
-1.pdf  used on input line 350.
+1.pdf  used on input line 389.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 350--351
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 389--390
 [][]  
  []
 
-<Final_project_files/figure-latex/rainbow figure rural-1.pdf, id=156, 469.755pt
+<Final_project_files/figure-latex/rainbow figure rural-1.pdf, id=162, 469.755pt
  x 325.215pt>
 File: Final_project_files/figure-latex/rainbow figure rural-1.pdf Graphic file 
 (type pdf)
 <use Final_project_files/figure-latex/rainbow figure rural-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rainbow figure rural-
-1.pdf  used on input line 352.
+1.pdf  used on input line 391.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 352--353
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 391--392
 [][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[16 <./Final_project_files/figure-latex/rainbow figure urban-1.pdf>]
-<Final_project_files/figure-latex/rural facet bars-1.pdf, id=166, 469.755pt x 3
+[17 <./Final_project_files/figure-latex/rainbow figure urban-1.pdf>]
+<Final_project_files/figure-latex/rural facet bars-1.pdf, id=172, 469.755pt x 3
 25.215pt>
 File: Final_project_files/figure-latex/rural facet bars-1.pdf Graphic file (typ
 e pdf)
 <use Final_project_files/figure-latex/rural facet bars-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rural facet bars-1.pd
-f  used on input line 356.
+f  used on input line 395.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 356--357
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 395--396
 [][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[17 <./Final_project_files/figure-latex/rainbow figure rural-1.pdf>]
-<Final_project_files/figure-latex/urban facet bars-1.pdf, id=176, 469.755pt x 3
+[18 <./Final_project_files/figure-latex/rainbow figure rural-1.pdf>]
+<Final_project_files/figure-latex/urban facet bars-1.pdf, id=182, 469.755pt x 3
 25.215pt>
 File: Final_project_files/figure-latex/urban facet bars-1.pdf Graphic file (typ
 e pdf)
 <use Final_project_files/figure-latex/urban facet bars-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/urban facet bars-1.pd
-f  used on input line 358.
+f  used on input line 397.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 358--359
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 397--398
 [][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[18 <./Final_project_files/figure-latex/rural facet bars-1.pdf>]
-<Final_project_files/figure-latex/rural play-1.pdf, id=186, 469.755pt x 325.215
+[19 <./Final_project_files/figure-latex/rural facet bars-1.pdf>]
+<Final_project_files/figure-latex/rural play-1.pdf, id=193, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/rural play-1.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/rural play-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rural play-1.pdf  use
-d on input line 362.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Final_project_files/figure-latex/rural play-2.pdf, id=187, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/rural play-2.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/rural play-2.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/rural play-2.pdf  use
-d on input line 362.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Final_project_files/figure-latex/rural play-3.pdf, id=188, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/rural play-3.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/rural play-3.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/rural play-3.pdf  use
-d on input line 362.
+d on input line 401.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 362--363
-[][] 
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 401--402
+[][]  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[19 <./Final_project_files/figure-latex/urban facet bars-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[20 <./Final_project_files/figure-latex/rural play-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[21 <./Final_project_files/figure-latex/rural play-2.pdf>] [22 <./Final_project
-_files/figure-latex/rural play-3.pdf>] [23] [24] AED endfloat: Processing end F
-igures and Tables (./Final_project.aux)
+[20 <./Final_project_files/figure-latex/urban facet bars-1.pdf>] [21 <./Final_p
+roject_files/figure-latex/rural play-1.pdf>] [22] [23] AED endfloat: Processing
+ end Figures and Tables (./Final_project.aux)
 Package rerunfilecheck Info: File `Final_project.out' has not changed.
-(rerunfilecheck)             Checksum: 1996847CC4CEFB03153A0205E0B35595;884.
+(rerunfilecheck)             Checksum: ECA683293B8EC50B783AB2B195D526A6;884.
  ) 
 Here is how much of TeX's memory you used:
- 14950 strings out of 481331
- 225011 string characters out of 5916409
+ 14951 strings out of 481331
+ 224617 string characters out of 5916409
  552710 words of memory out of 5000000
- 31469 multiletter control sequences out of 15000+600000
+ 31461 multiletter control sequences out of 15000+600000
  441208 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 80i,12n,85p,2252b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 80i,12n,85p,2252b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 }{/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
 enc}{/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.e
@@ -1069,10 +1055,10 @@ blic/lm/lmr8.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/type1/p
 ublic/lm/lmri12.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/type
 1/public/lm/lmsy8.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmtt12.pfb>
-Output written on Final_project.pdf (24 pages, 305401 bytes).
+Output written on Final_project.pdf (23 pages, 297074 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 120 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 

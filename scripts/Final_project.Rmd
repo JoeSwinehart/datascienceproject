@@ -479,20 +479,6 @@ ggplot(urban_districts,
 
 The significant drop presents a second major outcome of interest, from which a posteriori visual analysis served as a basis for understanding notable trends. For example, multiple rural school districts reported a head count of more than 1,000 gifted students in 2004, and then by 2008 the districts reported fewer than 10 gifted students. This magnitude of declining gifted student designations is significant and specific to rural school districts in BC. Of particular note is the district of Prince George, where gifted students appear to have accounted for the majority of overall students with exceptionalities until 2006.
 
-```{r rural play, echo = FALSE}
-
-##Looking into Sooke (SD 62 - pop. 9,269) categorized under Victoria so urban but technically rural
-## In progress
-
-sooke <- district_class %>%
-  filter(DISTRICT_NAME == "Sooke") %>%
-  as_tibble()
-
-ggplot(sooke, aes(SPECIAL_NEEDS_CODE)) +
-  facet_wrap(~SCHOOL_YEAR)
-  geom_col()
-```
-
 # Discussion
 Regarding the first research question, it is apparent that the 2016 Supreme Court decision did not impact any of the 12 designation categories as hypothesized. The trendlines for each of the exceptionality categories remained consistent post-2016 in BC and this mapped on to Oregon trends in exceptionality designation reasonably closely. This finding suggests that the resources and practices around supporting students with exceptionalities did not differ significantly from a provincial policy determination. 
 
