@@ -4,7 +4,7 @@
 %
 \documentclass[
   english,
-  man]{apa6}
+  man,floatsintext]{apa6}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -112,14 +112,21 @@
   {}{\typeout{Failed to patch title.}}
 \makeatother
 \shorttitle{PACNW SpEd Trends}
-\keywords{Vancouver, British Columbia, Oregon, Special Education, SpEd\newline\indent Word count: 0<n<1,000,000}
-\DeclareDelayedFloatFlavor{ThreePartTable}{table}
-\DeclareDelayedFloatFlavor{lltable}{table}
-\DeclareDelayedFloatFlavor*{longtable}{table}
-\makeatletter
-\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
-\makeatother
+\keywords{Vancouver, British Columbia, Oregon, Special Education, SpEd}
 \usepackage{csquotes}
+\usepackage[titles]{tocloft}
+\cftpagenumbersoff{figure}
+\renewcommand{\cftfigpresnum}{\itshape\figurename\enspace}
+\renewcommand{\cftfigaftersnum}{.\space}
+\setlength{\cftfigindent}{0pt}
+\setlength{\cftafterloftitleskip}{0pt}
+\settowidth{\cftfignumwidth}{Figure 10.\qquad}
+\cftpagenumbersoff{table}
+\renewcommand{\cfttabpresnum}{\itshape\tablename\enspace}
+\renewcommand{\cfttabaftersnum}{.\space}
+\setlength{\cfttabindent}{0pt}
+\setlength{\cftafterloftitleskip}{0pt}
+\settowidth{\cfttabnumwidth}{Table 10.\qquad}
 \ifxetex
   % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
   \usepackage{polyglossia}
@@ -156,7 +163,7 @@ Correspondence concerning this article should be addressed to David Fainstein, 1
 \affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
 
 \abstract{
-This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministry of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories.
+Over the last 20 years, there have been drastic changes within public school districts in regards to special education classifications. By examining and comparing special education data spanning over 15 years in Vancouver, British Columbia and Oregon, policy changes can be visualized in student population data. Descriptive statistics are used to analyze trends seen both across special education categories, school years, and districts. Districts are classified as urban or rural and comparative analysis tracks trends observed. Special attention is given to any population or categorization changes occurring past the 2016 Supreme Court of Canada decision to revert BC classroom composition. Data visualization allows for large datasets, such as these, to be compacted into thorough plots where longitudinal trends can be observed and analyzed.
 }
 
 
@@ -171,6 +178,8 @@ Educational policy can impact practice by reorganizing educational delivery and 
 
 When policy is enacted, the intended outcomes are often not realized for months, years, or decades (Gu et al., 2018). For example, changing school district policy on professional development to align with research-informed practices may be constructed to increase student academic achievement; though, there is insufficient evidence pointing to how long professionalized intervention with teachers will take to increase student academic scores (Luke \& McArdle, 2009). Longitudinal data helps to understand the impact of policy change because of the year-over-year comparisons that illustrate differences, inflection points, or anomalies of interest (Michelmore \& Dynarski, 2017).
 
+The above correlogram isolates a single school district - Greater Victoria - as a representation of the trends observed within the whole data set. This series of plots gives a snapshot introduction for the data trends to be observed.
+
 \hypertarget{current-study}{%
 \subsection{Current Study}\label{current-study}}
 
@@ -178,7 +187,7 @@ Our project primarily examines two datasets detailing head counts of students wi
 
 We intend to explore several questions regarding longitudinal trends where educational policy may have impacted special education practice. First, we will use descriptive statistics to describe trends in disability prevalence over time. The initial analyses will inform a discussion on developmental trajectories by illustrating shifts in prevalence growth from static to linearly increasing based on age of diagnosis for the Oregon data, which can serve as a springboard to make inferences about BC data (e.g., common age of onset for diagnosis per category and diagnostic patterns over time). In studying the differences and similarities between OR and BC datasets, we will also engage in a discussion on diagnostic terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM; American Psychological Association, 2013), in part as a response to a challenge set by differing terminology between BC and OR categorization (i.e., the United States federal guidelines for exceptionality designation are similar but not identical to exceptionality designation guidelines in BC).
 
-Second, we hope to closely analyze any changes, or lack thereof, within the BC data following Canadian Supreme Court rulings between the British Columbia Teachers Federation and the province of BC (See Lambert, 2017). Canadian supreme court rulings have significant implications on educational policy in the provinces and, in 2016, resulted in a limit to the number of students with disability designations in classrooms resulting in an expansion of the number of specialist teachers' that school districts are required to hire. The driving theory of change is that decreasing student-to-teacher ratios and capping the number of students with exceptionalities in each classroom causes student designation practices to change. Theoretically, school district administrators made decisions based on current staffing levels, student designations, diagnostic capacity and malleability, as well as external pressures to adjust practice according to legal mandates.
+Second, we hope to closely analyze any changes, or lack thereof, within the BC data following Canadian Supreme Court rulings between the British Columbia Teachers Federation and the province of BC (See Lambert, 2017). Canadian Supreme Court rulings have significant implications on educational policy in the provinces and, in 2016, resulted in a limit to the number of students with disability designations in classrooms resulting in an expansion of the number of specialist teachers' that school districts are required to hire. The driving theory of change is that decreasing student-to-teacher ratios and capping the number of students with exceptionalities in each classroom causes student designation practices to change. Theoretically, school district administrators made decisions based on current staffing levels, student designations, diagnostic capacity and malleability, as well as external pressures to adjust practice according to legal mandates.
 
 Finally, we will explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. School district level data is useful for examining longitudinal trends for individual administrative units (e.g., superintendent's office and director(s) of inclusive education); however, this level of data analysis cannot speak to province-wide trends in the culture of superordinate legal directives which impact swift policy changes. Given this, we will run analyses on both exemplar districts to highlight localized policy impacts on practice and amalgamated districts (e.g., school districts defined as rural by Statistics Canada) to investigate cultural shifts in the policy-to-practice association.
 
@@ -198,9 +207,9 @@ With respect to the 2016 Supreme Court of Canada decision to revert BC classroom
 \section{Methods}\label{methods}}
 
 Datasets were extracted from publicly available sources. Specifically, the BC Ministry of Education, Oregon Department of Education, and Statistics Canada are the data sources for the current study. Note that the primary jurisdiction of interest is BC, and OR is selected as a reasonable basis of comparison (i.e., similar geography, population, and population growth rate). Further, BC has distinct educational policy from OR as Canadian education is administered entirely by provincial ministries of education and special education law is remarkably different between BC and OR. Together, these datasets help achieve three objectives for acquiring data appropriate to the research questions:
-Headcount data at multiple levels (e.g., district and state or province) for students with exceptionalities, disaggregated by category of exceptionality, year, and location.
-Population data to fit school district locations to a geographical classification (e.g., urban, suburban, rural) as specified in national documentation (e.g., urban centers have a minimum of 10,000 inhabitants based on census data), and calculate prevalence rates.
-Data from multiple jurisdictions where educational policies do not align chronologically. For example, special education law in the United States is disjointed from BC special education law and policy changes are not the same, nor are they implemented simultaneously.
+\emph{Headcount data at multiple levels (e.g., district and state or province) for students with exceptionalities, disaggregated by category of exceptionality, year, and location.
+}Population data to fit school district locations to a geographical classification (e.g., urban, suburban, rural) as specified in national documentation (e.g., urban centers have a minimum of 10,000 inhabitants based on census data), and calculate prevalence rates.
+*Data from multiple jurisdictions where educational policies do not align chronologically. For example, special education law in the United States is disjointed from BC special education law and policy changes are not the same, nor are they implemented simultaneously.
 
 The nature of the current study is intentionally exploratory within a systematic approach of viewing data, testing a priori hypotheses against descriptive statistics, calculating effect sizes if appropriate, and, finally, exploring notable anomalies in prevalence trends that were not hypothesized a posteriori. As a first step, the authors took the approach of examining provincial-level data in BC. Then, trends in BC data were compared against trends in OR data to see if similar rates of students were designated with exceptionalities across jurisdictions. When anomalies were suspected in the BC trends of exceptionality prevalence, then effect size tests were conducted in line with the research questions. Finally, any anomalies that were suspected a posteriori were tested with effect size calculations and discussed in the final section of our current study.
 
@@ -260,16 +269,9 @@ To answer the first research question, we examine the provincial-level prevalenc
 
 This is roughly in line with Oregon's designation data, showing that there were no state-wide anomalies after the year 2016. Similar to the BC data, we see a steady increase in students identified under the autism diagnosis, while most categories remained relatively stable over all of the years surveyed. The recent growth in Developmental Delays and Emotional Disturbance would be worth watching in future years, but we can reasonably predict that more rigid categories like Deaf-Blindness and Traumatic Brain Injury will remain stable in the years to come.
 
-\begin{verbatim}
-## Warning: Removed 12 row(s) containing missing values (geom_path).
-\end{verbatim}
-
 \includegraphics{Final_project_files/figure-latex/Oregon plot-1.pdf}
-Looking at Oregon disability prevalence by age gives us some idea of what happens to these categories over time, and also invites some questions. Most visually striking is the drop-off of students identified as having a Speech or Language Impairment, which makes sense, as it is addressed early in school and highly correctable. By middle school, most students have been exited from the speech program. At a striking contrast would be things that cannot be corrected, such as Deaf-Blindness or Traumatic Brain Injury. As expected, these numbers are extremely static over time. More thought-provoking would be the numbers for Emotional Disturbance. These tend to grow fairly steadily during elementary and middle school, but around age 16 the numbers actually start to decrease. One might wonder if this drop is due to these students no longer being part of the school system, as they may be far more likely to drop out and/or enter a different system as adjudicated youth. It certainly would be worth an additional look in the future.
 
-\begin{verbatim}
-## Warning: Removed 190 rows containing non-finite values (stat_smooth).
-\end{verbatim}
+Looking at Oregon disability prevalence by age gives us some idea of what happens to these categories over time, and also invites some questions. Most visually striking is the drop-off of students identified as having a Speech or Language Impairment, which makes sense, as it is addressed early in school and highly correctable. By middle school, most students have been exited from the speech program. At a striking contrast would be things that cannot be corrected, such as Deaf-Blindness or Traumatic Brain Injury. As expected, these numbers are extremely static over time. More thought-provoking would be the numbers for Emotional Disturbance. These tend to grow fairly steadily during elementary and middle school, but around age 16 the numbers actually start to decrease. One might wonder if this drop is due to these students no longer being part of the school system, as they may be far more likely to drop out and/or enter a different system as adjudicated youth. It certainly would be worth an additional look in the future.
 
 \includegraphics{Final_project_files/figure-latex/unnamed-chunk-1-1.pdf}
 
@@ -281,9 +283,9 @@ Taken together, we see that at the provincial- and state-levels, there is consis
 
 To examine potential differences within BC, the authors chose to divide school districts by urban or rural designation according to Statistics Canada guidelines on characterizing living populations.
 
-\begin{verbatim}
-## Warning in FUN(newX[, i], ...): NAs introduced by coercion
-\end{verbatim}
+The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs.~rural classifications were made based on the district's population on the 2016 census. If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural.
+
+Disaggregating districts by urban and rural classification allowed for analysis across geographic designation and within case-study districts for further understanding of policy effects on regions with differing resources and large differences in student population sizes. The table below details our classification of districts, according to the 2016 census. Classification and population is shown in comparison to the number of students receiving special education services for the 2016/2017 school year in that school district.
 
 \begin{table}[tbp]
 
@@ -341,33 +343,29 @@ District Number & District Name & Population & Classification & Number of Studen
 
 \end{table}
 
-\begin{verbatim}
-## Warning: Removed 129 row(s) containing missing values (geom_path).
-\end{verbatim}
+A closer look at the districts in Figure 5 details how overall urban areas appear more stable over time compared to urban areas, as in figure 6, which appear to have clustering trends. Between 1999 and 2004/2005 the number of students with exceptionalities appear fairly stable. Rural districts then suffer a noticeable drop between 2004/2005 and 2005/2006, specifically in the district of Prince George. The years following present a steady decline through 2016, which then begins a steady upward trajectory. Both urban and rural areas alike exhibit a similar dramatic rise between 1998/1999 and 1999/2000, which we attribute to data reporting changes, but may be worth a closer look.
+
+There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (ps \textgreater{} 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (t(239) = -2.113, p = 0.036, g = 0.261, CI{[}-0.504, -0.019{]}), Learning Disability (t(262) = -1.984, p = 0.483, g = 0.230, CI{[}-0.453, -0.007{]}), and Chronic Health (t(255) = -2.068, p = 0.040, g = 0.247, CI{[}-0.479, -0.015{]}). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges' g \textgreater{} 0.2, and g \textless{} 0.5), but did show an increasing trend post-2016 (t(195) = -0.879, p = 0.380, g = 0.120, CI{[}-0.383, 0.144{]}).
+
+\includegraphics{Final_project_files/figure-latex/rainbow figure urban-1.pdf}
+
+\includegraphics{Final_project_files/figure-latex/rainbow figure rural-1.pdf}
+
+Taken side by side, a simple visualization detailing student exceptionality designation presents the overall similarities between urban and rural areas, as in figures x and x below. Of note, the \enquote{Gifted} designation suffers a severe drop around 2005/2006 for urban and rural areas alike, though the change is more pronounced within rural districts.
+
+\includegraphics{Final_project_files/figure-latex/rural facet bars-1.pdf}
+
+\includegraphics{Final_project_files/figure-latex/urban facet bars-1.pdf}
+
+The significant drop presents a second major outcome of interest, from which a posteriori visual analysis served as a basis for understanding notable trends. For example, multiple rural school districts reported a head count of more than 1,000 gifted students in 2004, and then by 2008 the districts reported fewer than 10 gifted students. This magnitude of declining gifted student designations is significant and specific to rural school districts in BC. Of particular note is the district of Prince George, where gifted students appear to have accounted for the majority of overall students with exceptionalities until 2006.
 
 \includegraphics{Final_project_files/figure-latex/rural play-1.pdf} \includegraphics{Final_project_files/figure-latex/rural play-2.pdf} \includegraphics{Final_project_files/figure-latex/rural play-3.pdf}
-
-\begin{verbatim}
-## Warning: Removed 12 rows containing missing values (position_stack).
-\end{verbatim}
-
-\includegraphics{Final_project_files/figure-latex/rural play-4.pdf} \includegraphics{Final_project_files/figure-latex/rural play-5.pdf}
 
 \begin{verbatim}
 ## geom_col: width = NULL, na.rm = FALSE
 ## stat_identity: na.rm = FALSE
 ## position_stack
 \end{verbatim}
-
-\includegraphics{Final_project_files/figure-latex/urban play-1.pdf}
-
-\begin{verbatim}
-## Warning: Removed 25 row(s) containing missing values (geom_path).
-\end{verbatim}
-
-\includegraphics{Final_project_files/figure-latex/urban play-2.pdf}
-
-There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (ps \textgreater{} 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (t(239) = -2.113, p = 0.036, g = 0.261, CI{[}-0.504, -0.019{]}), Learning Disability (t(262) = -1.984, p = 0.483, g = 0.230, CI{[}-0.453, -0.007{]}), and Chronic Health (t(255) = -2.068, p = 0.040, g = 0.247, CI{[}-0.479, -0.015{]}). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges' g \textgreater{} 0.2, and g \textless{} 0.5), but did show an increasing trend post-2016 (t(195) = -0.879, p = 0.380, g = 0.120, CI{[}-0.383, 0.144{]}).
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -390,6 +388,13 @@ The rapid decrease in students identified as gifted in rural districts between t
 \hypertarget{refs}{}
 
 \endgroup
+
+
+\clearpage
+\renewcommand{\listfigurename}{Figure captions}
+
+\clearpage
+\renewcommand{\listtablename}{Table captions}
 
 
 \end{document}

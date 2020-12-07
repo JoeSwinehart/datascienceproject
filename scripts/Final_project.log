@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.11.8)  6 DEC 2020 22:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.7)  7 DEC 2020 08:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Final_project.tex
 (./Final_project.tex
 LaTeX2e <2020-10-01> patch level 2
-L3 programming layer <2020-10-27> xparse <2020-03-03> (/Users/janetteavelar/Lib
+L3 programming layer <2020-12-05> xparse <2020-03-03> (/Users/janetteavelar/Lib
 rary/TinyTeX/texmf-dist/tex/latex/apa6/apa6.cls
 Document Class: apa6 2020/01/13 v2.34 APA formatting (6th edition)
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -13,14 +13,14 @@ Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count175
-\c@section=\count176
-\c@subsection=\count177
-\c@subsubsection=\count178
-\c@paragraph=\count179
-\c@subparagraph=\count180
-\c@figure=\count181
-\c@table=\count182
+\c@part=\count177
+\c@section=\count178
+\c@subsection=\count179
+\c@subsubsection=\count180
+\c@paragraph=\count181
+\c@subparagraph=\count182
+\c@figure=\count183
+\c@table=\count184
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
@@ -28,7 +28,7 @@ File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.st
 y
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count183
+\etb@tempcnta=\count185
 )
 Class apa6 Info: No bibliography package was specified; defaulting to (but not 
 loading) Biblatex on input line 213.
@@ -84,9 +84,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count184
-\Gm@cntv=\count185
-\c@Gm@tempcnt=\count186
+\Gm@cnth=\count186
+\Gm@cntv=\count187
+\c@Gm@tempcnt=\count188
 \Gm@bindingoffset=\dimen139
 \Gm@wd@mp=\dimen140
 \Gm@odd@mp=\dimen141
@@ -133,12 +133,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen156
 \cmidrulekern=\dimen157
 \defaultaddspace=\dimen158
-\@cmidla=\count187
-\@cmidlb=\count188
+\@cmidla=\count189
+\@cmidlb=\count190
 \@aboverulesep=\dimen159
 \@belowrulesep=\dimen160
-\@thisruleclass=\count189
-\@lastruleclass=\count190
+\@thisruleclass=\count191
+\@lastruleclass=\count192
 \@thisrulewidth=\dimen161
 )
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/threeparttable/three
@@ -170,11 +170,11 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen168
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count191
-\c@continuedfloat=\count192
+\c@caption@flags=\count193
+\c@continuedfloat=\count194
 Package caption Info: threeparttable package is loaded.
 )
-\c@APAenum=\count193
+\c@APAenum=\count195
 \@text@par@indent=\skip59
 \gr@box=\box48
 \gr@boxwidth=\skip60
@@ -187,7 +187,7 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 )
-\c@appendix=\count194
+\c@appendix=\count196
 
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.st
 y
@@ -207,12 +207,19 @@ s
 y
 Package: endfloat 2019/04/15 v2.7 LaTeX2e package puts figures and tables at en
 d (jdm)
-\c@posttable=\count195
+\c@posttable=\count197
 \efloat@postttt=\write3
-\@ef@tttopen=\count196
-\c@postfigure=\count197
+\@ef@tttopen=\count198
+\c@postfigure=\count199
 \efloat@postfff=\write4
-\@ef@fffopen=\count198
+\@ef@fffopen=\count266
+) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count267
+\float@exts=\toks17
+\float@box=\box49
+\@float@everytoks=\toks18
+\@floatcapt=\box50
 ))
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -220,7 +227,7 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.st
 y
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks17
+\@emptytoks=\toks19
 \symAMSa=\mathgroup7
 \symAMSb=\mathgroup8
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
@@ -235,7 +242,7 @@ For additional information on amsmath, use the `?' option.
 Package: amstext 2000/06/29 v2.01 AMS text
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks18
+\@emptytoks=\toks20
 \ex@=\dimen169
 )) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.st
 y
@@ -245,41 +252,41 @@ LaTeX Info: Redefining \boldsymbol on input line 28.
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count199
+\inf@bad=\count268
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count266
-\leftroot@=\count267
+\uproot@=\count269
+\leftroot@=\count270
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count268
-\DOTSCASE@=\count269
+\classnum@=\count271
+\DOTSCASE@=\count272
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box49
-\strutbox@=\box50
+\Mathstrutbox@=\box51
+\strutbox@=\box52
 \big@size=\dimen171
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count270
-\c@MaxMatrixCols=\count271
+\macc@depth=\count273
+\c@MaxMatrixCols=\count274
 \dotsspace@=\muskip16
-\c@parentequation=\count272
-\dspbrk@lvl=\count273
-\tag@help=\toks19
-\row@=\count274
-\column@=\count275
-\maxfields@=\count276
-\andhelp@=\toks20
+\c@parentequation=\count275
+\dspbrk@lvl=\count276
+\tag@help=\toks21
+\row@=\count277
+\column@=\count278
+\maxfields@=\count279
+\andhelp@=\toks22
 \eqnshift@=\dimen172
 \alignsep@=\dimen173
 \tagshift@=\dimen174
 \tagwidth@=\dimen175
 \totwidth@=\dimen176
 \lineht@=\dimen177
-\@envbody=\toks21
+\@envbody=\toks23
 \multlinegap=\skip72
 \multlinetaggap=\skip73
-\mathdisplay@stack=\toks22
+\mathdisplay@stack=\toks24
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.st
@@ -292,8 +299,8 @@ Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
-\inpenc@prehook=\toks23
-\inpenc@posthook=\toks24
+\inpenc@prehook=\toks25
+\inpenc@posthook=\toks26
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -362,8 +369,8 @@ sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
 \@linkdim=\dimen178
-\Hy@linkcounter=\count277
-\Hy@pagecounter=\count278
+\Hy@linkcounter=\count280
+\Hy@pagecounter=\count281
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -377,7 +384,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count279
+\Hy@SavedSpaceFactor=\count282
 Package hyperref Info: Option `unicode' set `true' on input line 4338.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2020-05-15 v7.00e Hyperref: PDF Unicode definition (HO)
@@ -391,7 +398,7 @@ Package hyperref Info: Plain pages OFF on input line 4479.
 Package hyperref Info: Backreferencing OFF on input line 4484.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count280
+\c@Hy@tempcnt=\count283
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -406,7 +413,7 @@ alc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count281
+\Fld@menulength=\count284
 \Field@Width=\dimen180
 \Fld@charsize=\dimen181
 Package hyperref Info: Hyper figures OFF on input line 6347.
@@ -425,9 +432,9 @@ Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
 )
-\Hy@abspage=\count282
-\c@Item=\count283
-\c@Hfootnote=\count284
+\Hy@abspage=\count285
+\c@Item=\count286
+\c@Hfootnote=\count287
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -440,8 +447,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\Fld@listcount=\count285
-\c@bookmark@seq@number=\count286
+\Fld@listcount=\count288
+\c@bookmark@seq@number=\count289
 
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerun
 filecheck.sty
@@ -474,17 +481,17 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTright=\skip76
 \LTpre=\skip77
 \LTpost=\skip78
-\LTchunksize=\count287
+\LTchunksize=\count290
 \LTcapwidth=\dimen182
-\LT@head=\box51
-\LT@firsthead=\box52
-\LT@foot=\box53
-\LT@lastfoot=\box54
-\LT@cols=\count288
-\LT@rows=\count289
-\c@LT@tables=\count290
-\c@LT@chunks=\count291
-\LT@p@ftn=\toks25
+\LT@head=\box53
+\LT@firsthead=\box54
+\LT@foot=\box55
+\LT@lastfoot=\box56
+\LT@cols=\count291
+\LT@rows=\count292
+\c@LT@tables=\count293
+\c@LT@chunks=\count294
+\LT@p@ftn=\toks27
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/graphics/lscape.st
 y
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
@@ -493,7 +500,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 y
 Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
 \multirow@colwidth=\skip79
-\multirow@cntb=\count292
+\multirow@cntb=\count295
 \multirow@dima=\skip80
 \bigstrutjot=\dimen183
 ) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/tools/tabularx.sty
@@ -501,20 +508,20 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen184
-\ar@mcellbox=\box55
+\ar@mcellbox=\box57
 \extrarowheight=\dimen185
-\NC@list=\toks26
+\NC@list=\toks28
 \extratabsurround=\skip81
 \backup@length=\skip82
-\ar@cellbox=\box56
+\ar@cellbox=\box58
 )
 \TX@col@width=\dimen186
 \TX@old@table=\dimen187
 \TX@old@col=\dimen188
 \TX@target=\dimen189
 \TX@delta=\dimen190
-\TX@cols=\count293
-\TX@ftn=\toks27
+\TX@cols=\count296
+\TX@ftn=\toks29
 )
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/threeparttablex/thre
 eparttablex.sty
@@ -533,13 +540,13 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.st
 y
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count294
-\csq@gtype=\count295
-\csq@glevel=\count296
-\csq@qlevel=\count297
-\csq@maxlvl=\count298
-\csq@tshold=\count299
-\csq@ltx@everypar=\toks28
+\csq@reset=\count297
+\csq@gtype=\count298
+\csq@glevel=\count299
+\csq@qlevel=\count300
+\csq@maxlvl=\count301
+\csq@tshold=\count302
+\csq@ltx@everypar=\toks30
 
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.de
 f
@@ -551,11 +558,48 @@ Package csquotes Info: ... configuration file loaded successfully.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/csquotes/csquotes.cf
 g
 File: csquotes.cfg 
-)) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+)) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/tocloft/tocloft.s
+ty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has section divisions on input line 51.
+\cftparskip=\skip85
+\cftbeforetoctitleskip=\skip86
+\cftaftertoctitleskip=\skip87
+\cftbeforepartskip=\skip88
+\cftpartnumwidth=\skip89
+\cftpartindent=\skip90
+\cftbeforesecskip=\skip91
+\cftsecindent=\skip92
+\cftsecnumwidth=\skip93
+\cftbeforesubsecskip=\skip94
+\cftsubsecindent=\skip95
+\cftsubsecnumwidth=\skip96
+\cftbeforesubsubsecskip=\skip97
+\cftsubsubsecindent=\skip98
+\cftsubsubsecnumwidth=\skip99
+\cftbeforeparaskip=\skip100
+\cftparaindent=\skip101
+\cftparanumwidth=\skip102
+\cftbeforesubparaskip=\skip103
+\cftsubparaindent=\skip104
+\cftsubparanumwidth=\skip105
+\cftbeforeloftitleskip=\skip106
+\cftafterloftitleskip=\skip107
+\cftbeforefigskip=\skip108
+\cftfigindent=\skip109
+\cftfignumwidth=\skip110
+\c@lofdepth=\count303
+\c@lotdepth=\count304
+\cftbeforelottitleskip=\skip111
+\cftafterlottitleskip=\skip112
+\cftbeforetabskip=\skip113
+\cfttabindent=\skip114
+\cfttabnumwidth=\skip115
+) (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2020/10/27 3.51 The Babel package
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2020/10/27 3.51 Babel common definitions
-\babel@savecnt=\count300
+\babel@savecnt=\count305
 \U@D=\dimen191
 \l@babelnohyphens=\language3
 
@@ -563,7 +607,7 @@ File: babel.def 2020/10/27 3.51 Babel common definitions
 )
 \bbl@readstream=\read2
 )
-\bbl@dirlevel=\count301
+\bbl@dirlevel=\count306
 
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/generic/babel-english/engl
 ish.ldf
@@ -591,29 +635,29 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-
 pdftex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
-\l__kernel_color_stack_int=\count302
-\l__pdf_internal_box=\box57
+\l__kernel_color_stack_int=\count307
+\l__pdf_internal_box=\box59
 ) (./Final_project.aux)
 \openout1 = `Final_project.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -672,6 +716,7 @@ can.txt
 File: APAamerican.txt 2012/02/23 v1.25 apa6 configuration for American English
 )
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 
@@ -680,7 +725,7 @@ y
 Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 164.
+Package hyperref Info: Link coloring OFF on input line 171.
 
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -693,189 +738,187 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 titlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count303
+\c@section@level=\count308
 )
-LaTeX Info: Redefining \ref on input line 164.
-LaTeX Info: Redefining \pageref on input line 164.
-LaTeX Info: Redefining \nameref on input line 164.
+LaTeX Info: Redefining \ref on input line 171.
+LaTeX Info: Redefining \pageref on input line 171.
+LaTeX Info: Redefining \nameref on input line 171.
 (./Final_project.out) (./Final_project.out)
 \@outlinefile=\write5
 \openout5 = `Final_project.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-66.
+73.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-66.
+73.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-166.
+173.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-166.
+173.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 166.
+(Font)              <12> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 166.
+(Font)              <8> on input line 173.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 166.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 166
+(Font)              <6> on input line 173.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 173
 .
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 166
+LaTeX Font Info:    Trying to load font information for U+msb on input line 173
 .
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{/Users/janetteavelar/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdf
 tex.map}
 
-] [2] [3] [4] [5] [6]
-Underfull \vbox (badness 7649) has occurred while \output is active []
+] [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[7]
-<Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf, id=82, 469.75
+[3] [4] [5] [6] [7] [8]
+<Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf, id=92, 469.75
 5pt x 325.215pt>
 File: Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf Graphic f
 ile (type pdf)
 <use Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/Provinical_Data_Overv
-iew-1.pdf  used on input line 223.
+iew-1.pdf  used on input line 232.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 223--224
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 232--233
 [][]  
  []
 
-
-Underfull \vbox (badness 4927) has occurred while \output is active []
-
-[8]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
-25.
+34.
 (/Users/janetteavelar/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (36.58122pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.58122pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##    year  disability    x6    x7    x8    x9   x10   x11   
 x12   x13   x14   x15[] 
  []
 
 
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##    <chr> <chr>      <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <d
 bl> <dbl> <dbl> <dbl>[] 
  []
 
 
-Overfull \hbox (36.57422pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.57422pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  1 2002~ INTELLECT~   135   172   220   261   279   303   
 370   364   388   378[] 
  []
 
 
-Overfull \hbox (36.5322pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.5322pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  2 2002~ HEARING I~    46    66    69    67    79    78   
  69    70    53    72[] 
  []
 
 
-Overfull \hbox (36.56021pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.56021pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  3 2002~ SPEECH OR~  2502  2466  2443  2205  1894  1282   
 874   677   493   340[] 
  []
 
 
-Overfull \hbox (36.56721pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.56721pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  4 2002~ VISUAL IM~    18    27    25    16    12    26   
  19    24    31    19[] 
  []
 
 
-Overfull \hbox (36.58122pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.58122pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  5 2002~ EMOTIONAL~    81   178   241   292   347   433   
 504   487   549   548[] 
  []
 
 
-Overfull \hbox (36.56021pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.56021pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  6 2002~ ORTHOPEDI~    65    77    64    49    64    71   
  50    48    44    43[] 
  []
 
-
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 241--241
+[9 <./Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf>]
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  7 2002~ DEAF-BLIN~     0     2     0     0     1     0   
   2     0     4     2[] 
  []
 
 
-Overfull \hbox (36.59523pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.59523pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  8 2002~ MULTIPLE ~     0     0     0     0     0     0   
   0     0     0     0[] 
  []
 
 
-Overfull \hbox (36.5392pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.5392pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ##  9 2002~ AUTISM       267   289   290   334   325   316   
 290   256   243   219[] 
  []
 
 
-Overfull \hbox (36.56721pt too wide) in paragraph at lines 241--241
+Overfull \hbox (36.56721pt too wide) in paragraph at lines 250--250
 []\T1/lmtt/m/n/12 ## 10 2002~ TRAUMATIC~     6    11    17    23    22    19   
  21    23    36    36[] 
  []
 
-[9 <./Final_project_files/figure-latex/Provinical_Data_Overview-1.pdf>]
-<Final_project_files/figure-latex/Oregon plot-1.pdf, id=103, 469.755pt x 325.21
+[10]
+<Final_project_files/figure-latex/Oregon plot-1.pdf, id=107, 469.755pt x 325.21
 5pt>
 File: Final_project_files/figure-latex/Oregon plot-1.pdf Graphic file (type pdf
 )
 <use Final_project_files/figure-latex/Oregon plot-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/Oregon plot-1.pdf  us
-ed on input line 267.
+ed on input line 272.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 267--269
-[][] 
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 272--273
+[][]  
  []
 
-[10]
-<Final_project_files/figure-latex/unnamed-chunk-1-1.pdf, id=108, 469.755pt x 32
+
+Underfull \vbox (badness 1521) has occurred while \output is active []
+
+[11 <./Final_project_files/figure-latex/Oregon plot-1.pdf>]
+<Final_project_files/figure-latex/unnamed-chunk-1-1.pdf, id=117, 469.755pt x 32
 5.215pt>
 File: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type
  pdf)
 <use Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/unnamed-chunk-1-1.pdf
-  used on input line 274.
+  used on input line 276.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 274--275
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 276--277
 [][]  
  []
 
-[11 <./Final_project_files/figure-latex/Oregon plot-1.pdf>]
 <Final_project_files/figure-latex/BCOR combo-1.pdf, id=118, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/BCOR combo-1.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/BCOR combo-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/BCOR combo-1.pdf  use
-d on input line 278.
+d on input line 280.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 278--279
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 280--281
 [][]  
  []
 
@@ -883,130 +926,136 @@ Overfull \hbox (28.90639pt too wide) in paragraph at lines 278--279
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [12 <./Final_project_files/figure-latex/unnamed-chunk-1-1.pdf>]
-\openout3 = `Final_project.ttt'.
+Underfull \vbox (badness 3291) has occurred while \output is active []
 
-(Final_project.ttt)
-<Final_project_files/figure-latex/rural play-1.pdf, id=131, 469.755pt x 325.215
+[13 <./Final_project_files/figure-latex/BCOR combo-1.pdf>]
+Overfull \hbox (42.59622pt too wide) in paragraph at lines 294--342
+ [] 
+ []
+
+
+LaTeX Warning: Float too large for page by 261.53809pt on input line 344.
+
+
+Underfull \vbox (badness 3977) has occurred while \output is active []
+
+[14] [15]
+<Final_project_files/figure-latex/rainbow figure urban-1.pdf, id=155, 469.755pt
+ x 325.215pt>
+File: Final_project_files/figure-latex/rainbow figure urban-1.pdf Graphic file 
+(type pdf)
+<use Final_project_files/figure-latex/rainbow figure urban-1.pdf>
+Package pdftex.def Info: Final_project_files/figure-latex/rainbow figure urban-
+1.pdf  used on input line 350.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 350--351
+[][]  
+ []
+
+<Final_project_files/figure-latex/rainbow figure rural-1.pdf, id=156, 469.755pt
+ x 325.215pt>
+File: Final_project_files/figure-latex/rainbow figure rural-1.pdf Graphic file 
+(type pdf)
+<use Final_project_files/figure-latex/rainbow figure rural-1.pdf>
+Package pdftex.def Info: Final_project_files/figure-latex/rainbow figure rural-
+1.pdf  used on input line 352.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 352--353
+[][]  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[16 <./Final_project_files/figure-latex/rainbow figure urban-1.pdf>]
+<Final_project_files/figure-latex/rural facet bars-1.pdf, id=166, 469.755pt x 3
+25.215pt>
+File: Final_project_files/figure-latex/rural facet bars-1.pdf Graphic file (typ
+e pdf)
+<use Final_project_files/figure-latex/rural facet bars-1.pdf>
+Package pdftex.def Info: Final_project_files/figure-latex/rural facet bars-1.pd
+f  used on input line 356.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 356--357
+[][]  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[17 <./Final_project_files/figure-latex/rainbow figure rural-1.pdf>]
+<Final_project_files/figure-latex/urban facet bars-1.pdf, id=176, 469.755pt x 3
+25.215pt>
+File: Final_project_files/figure-latex/urban facet bars-1.pdf Graphic file (typ
+e pdf)
+<use Final_project_files/figure-latex/urban facet bars-1.pdf>
+Package pdftex.def Info: Final_project_files/figure-latex/urban facet bars-1.pd
+f  used on input line 358.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (28.90639pt too wide) in paragraph at lines 358--359
+[][]  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[18 <./Final_project_files/figure-latex/rural facet bars-1.pdf>]
+<Final_project_files/figure-latex/rural play-1.pdf, id=186, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/rural play-1.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/rural play-1.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rural play-1.pdf  use
-d on input line 348.
+d on input line 362.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Final_project_files/figure-latex/rural play-2.pdf, id=132, 469.755pt x 325.215
+<Final_project_files/figure-latex/rural play-2.pdf, id=187, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/rural play-2.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/rural play-2.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rural play-2.pdf  use
-d on input line 348.
+d on input line 362.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Final_project_files/figure-latex/rural play-3.pdf, id=133, 469.755pt x 325.215
+<Final_project_files/figure-latex/rural play-3.pdf, id=188, 469.755pt x 325.215
 pt>
 File: Final_project_files/figure-latex/rural play-3.pdf Graphic file (type pdf)
 
 <use Final_project_files/figure-latex/rural play-3.pdf>
 Package pdftex.def Info: Final_project_files/figure-latex/rural play-3.pdf  use
-d on input line 348.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 348--349
-[][] 
- []
-
-[13 <./Final_project_files/figure-latex/BCOR combo-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[14 <./Final_project_files/figure-latex/rural play-1.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[15 <./Final_project_files/figure-latex/rural play-2.pdf>]
-<Final_project_files/figure-latex/rural play-4.pdf, id=166, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/rural play-4.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/rural play-4.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/rural play-4.pdf  use
-d on input line 354.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-<Final_project_files/figure-latex/rural play-5.pdf, id=167, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/rural play-5.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/rural play-5.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/rural play-5.pdf  use
-d on input line 354.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 354--355
-[][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[16 <./Final_project_files/figure-latex/rural play-3.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[17 <./Final_project_files/figure-latex/rural play-4.pdf>]
-<Final_project_files/figure-latex/urban play-1.pdf, id=186, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/urban play-1.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/urban play-1.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/urban play-1.pdf  use
 d on input line 362.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 Overfull \hbox (28.90639pt too wide) in paragraph at lines 362--363
-[][]  
+[][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[18 <./Final_project_files/figure-latex/rural play-5.pdf>]
-<Final_project_files/figure-latex/urban play-2.pdf, id=196, 469.755pt x 325.215
-pt>
-File: Final_project_files/figure-latex/urban play-2.pdf Graphic file (type pdf)
-
-<use Final_project_files/figure-latex/urban play-2.pdf>
-Package pdftex.def Info: Final_project_files/figure-latex/urban play-2.pdf  use
-d on input line 368.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (28.90639pt too wide) in paragraph at lines 368--369
-[][]  
- []
-
-
+[19 <./Final_project_files/figure-latex/urban facet bars-1.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[19 <./Final_project_files/figure-latex/urban play-1.pdf>]
-Underfull \vbox (badness 4752) has occurred while \output is active []
+[20 <./Final_project_files/figure-latex/rural play-1.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[20 <./Final_project_files/figure-latex/urban play-2.pdf>] [21] [22] AED endflo
-at: Processing end Figures and Tables [23] (./Final_project.ttt
-Overfull \hbox (42.59622pt too wide) in paragraph at lines 7--55
- [] 
- []
-
-
-LaTeX Warning: Float too large for page by 261.53809pt on input line 57.
-
-) [24] (./Final_project.aux)
+[21 <./Final_project_files/figure-latex/rural play-2.pdf>] [22 <./Final_project
+_files/figure-latex/rural play-3.pdf>] [23] [24] AED endfloat: Processing end F
+igures and Tables (./Final_project.aux)
 Package rerunfilecheck Info: File `Final_project.out' has not changed.
-(rerunfilecheck)             Checksum: 02E38A9F06C546DF077D963FE1B43551;883.
+(rerunfilecheck)             Checksum: 1996847CC4CEFB03153A0205E0B35595;884.
  ) 
 Here is how much of TeX's memory you used:
- 14658 strings out of 481433
- 220535 string characters out of 5919429
- 543145 words of memory out of 5000000
- 31078 multiletter control sequences out of 15000+600000
- 575854 words of font info for 64 fonts, out of 8000000 for 9000
+ 14950 strings out of 481331
+ 225011 string characters out of 5916409
+ 552710 words of memory out of 5000000
+ 31469 multiletter control sequences out of 15000+600000
+ 441208 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 80i,12n,85p,2252b,567s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 80i,12n,85p,2252b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 }{/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
 enc}{/Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.e
@@ -1020,7 +1069,7 @@ blic/lm/lmr8.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/type1/p
 ublic/lm/lmri12.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/type
 1/public/lm/lmsy8.pfb></Users/janetteavelar/Library/TinyTeX/texmf-dist/fonts/ty
 pe1/public/lm/lmtt12.pfb>
-Output written on Final_project.pdf (24 pages, 301977 bytes).
+Output written on Final_project.pdf (24 pages, 305401 bytes).
 PDF statistics:
  284 PDF objects out of 1000 (max. 8388607)
  225 compressed objects within 3 object streams

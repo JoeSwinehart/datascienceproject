@@ -65,6 +65,7 @@ output            : papaja::apa6_pdf
 
 
 ```{r setup, include = FALSE, echo = FALSE, warning = FALSE}
+knitr::opts_chunk$set(warning = FALSE)
 library("papaja")
 r_refs("r-references.bib")
 library(here)
@@ -211,7 +212,7 @@ BCprovincial <- BCdatastripped %>%
  ggplot(BCprovincial, aes(x = SCHOOL_YEAR, y = prevalence)) +
   geom_line(color = "cornflowerblue") +
    facet_wrap(~SPECIAL_NEEDS_CODE) +
-   labs(title = "BC Provincial Prevalence of Students with Exceptionalities by Category",
+   labs(title = "Fig. 1 BC Provincial Prevalence of Students with Exceptionalities by Category",
         x = "School Year",
         y = "Prevalence Rate")
 ```
@@ -247,7 +248,7 @@ This is roughly in line with Oregon's designation data, showing that there were 
 ggplot(fresh_primo, aes(age, frequency))+
   geom_line(aes(color=disability))+
   facet_wrap(~year)+
-    labs(color="disability", x= "Student Age", y="Student Count", title ="Disability Prevalence By Age")
+    labs(color="disability", x= "Student Age", y="Student Count", title ="Fig. 2 Disability Prevalence By Age")
 
 ```
 
@@ -259,7 +260,7 @@ ggplot(fresh_primo, aes(year, frequency))+
  geom_smooth(color = "cornflowerblue") +
  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
  facet_wrap(~disability)+
-    labs(color="frequency", x= "Year", y="Student Count", title = "Oregon Headcount of Students with Exceptionalities by Category")
+    labs(color="frequency", x= "Year", y="Student Count", title = "Fig. 3 Oregon Headcount of Students with Exceptionalities by Category")
 
 ```
 
@@ -287,7 +288,7 @@ BCAutism <- BCprovincial %>%
 ggplot() +
   geom_smooth(data = combined, aes(x = year, y = frequency, color = "Oregon")) +
   geom_smooth(data = BCAutism, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS, color = "British Columbia"), se = FALSE) +
-  labs(title = "BC and Oregon Headcount of Students with Chronic Health Conditions",
+  labs(title = "Fig. 4 BC and Oregon Headcount of Students with Chronic Health Conditions",
         x = "School Year",
         y = "Headcount",
        color = "Legend",
@@ -361,12 +362,12 @@ apa_table(
 )
 ```
 
-A closer look at the districts in play in figure (Rainbow urban) details how overall urban areas appear more stable over time compared to urban areas, as in figure (Rainbow rural), which appear to have clustering trends. Between 1999 and 2004/2005 the number of students with exceptionalities appear fairly stable. Rural districts then suffer a noticeable drop between 2004/2005 and 2005/2006, specifically in the district of Prince George. The years following present a steady decline through 2016, which then begins a steady upward trajectory. Both urban and rural areas alike exhibit a similar dramatic rise between 1998/1999 and 1999/2000, which we attribute to data reporting changes, but may be worth a closer look.
+A closer look at the districts in Figure 5 details how overall urban areas appear more stable over time compared to urban areas, as in figure 6, which appear to have clustering trends. Between 1999 and 2004/2005 the number of students with exceptionalities appear fairly stable. Rural districts then suffer a noticeable drop between 2004/2005 and 2005/2006, specifically in the district of Prince George. The years following present a steady decline through 2016, which then begins a steady upward trajectory. Both urban and rural areas alike exhibit a similar dramatic rise between 1998/1999 and 1999/2000, which we attribute to data reporting changes, but may be worth a closer look.
 
 There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (ps > 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (t(239) = -2.113, p = 0.036, g = 0.261, CI[-0.504, -0.019]), Learning Disability (t(262) = -1.984, p = 0.483, g = 0.230, CI[-0.453, -0.007]), and Chronic Health (t(255) = -2.068, p = 0.040, g = 0.247, CI[-0.479, -0.015]). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges’ g > 0.2, and g < 0.5), but did show an increasing trend post-2016 (t(195) = -0.879, p = 0.380, g = 0.120, CI[-0.383, 0.144]).
 
-```{r rainbow figure rural}
-#Data Prep
+```{r urban and rural data}
+#Data for Rural Totals (No categories)
 rural_districts <- district_class %>% 
   janitor::clean_names() %>% 
   filter(district_classification == "Rural") %>% 
@@ -374,119 +375,78 @@ rural_districts <- district_class %>%
             "public_or_independent",
             "district_population_2016"))
 
-#Viz - Rainbow bar chart of rural totals by exceptionality
-ggplot(rural_districts, 
-       aes(special_needs_code, number_of_students,
-           color = special_needs_code)) +
-  geom_line() +
-  facet_wrap(~school_year) +
-  labs(title = "Total Students by Exceptionality - Rural",
-       x = "Exceptionality",
-       y = "Number of Students")
-```
-
-```{r rainbow figure urban}
-#Data Prep
+#Data Prep for Urban totals (no categories)
 urban_districts <- district_class %>% 
   janitor::clean_names() %>% 
   filter(district_classification == "Urban") %>% 
   select(-c("data_level",
             "public_or_independent",
             "district_population_2016"))
-
-#Viz - Rainbow bar chart of urban totals by exceptionality
-ggplot(urban_totals, aes(school_year, students)) +
-  geom_col(aes(color = district_name)) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Students with Exceptionalities in Urban Districts 1996-2020",
-       x = "School Year",
-       y = "Total Students")
-```
-
-Taken side by side, a simple visualization detailing student exceptionality designation presents the overall similarities between urban and rural areas, as in figures x and x below. Of note, the “Gifted” designation suffers a severe drop around 2005/2006 for urban and rural areas alike, though the change is more pronounced within rural districts.
-
-```{r rural facet bars}
-#Data for Rural Totals (No categories)
+#Data Prep
 rural_totals <- rural_districts %>% 
   group_by(school_year, district_name, district_number) %>% 
   mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
   select(-c(special_needs_code, district_classification, number_of_students)) %>% 
   distinct()
 
-#A Vizualization of Totals/Time for Rural areas
-ggplot(rural_totals, aes(school_year, students)) +
-  geom_col(aes(color = district_name)) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Students with Exceptionalities in Rural Districts 1996-2020",
-       x = "School Year",
-       y = "Total Students")
-```
-
-```{r urban facet bars}
-#Data Prep for Urban totals (no categories)
+#Data Prep
 urban_totals <- urban_districts %>% 
   group_by(school_year, district_name, district_number) %>% 
   mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
   select(-c(special_needs_code, district_classification, number_of_students)) %>% 
   distinct()
+```
 
+```{r rainbow figure urban}
+#Viz - Rainbow bar chart of urban totals by exceptionality
+ggplot(urban_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Fig. 5 Students with Exceptionalities in Urban Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
+```
+
+```{r rainbow figure rural}
+#Viz - Rainbow bar chart of rural totals by exceptionality
+ggplot(rural_totals, aes(school_year, students)) +
+  geom_col(aes(color = district_name)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "Fig. 6 Students with Exceptionalities in Rural Districts 1996-2020",
+       x = "School Year",
+       y = "Total Students")
+```
+
+Taken side by side, a simple visualization detailing student exceptionality designation presents the overall similarities between urban and rural areas, as in figures 7 and 8 below. Of note, the “Gifted” designation suffers a severe drop around 2005/2006 for urban and rural areas alike, though the change is more pronounced within rural districts.
+
+```{r rural facet bars}
+#A Vizualization of Totals/Time for Rural areas
+ggplot(rural_districts, 
+       aes(special_needs_code, number_of_students,
+           color = special_needs_code)) +
+  geom_line() +
+  facet_wrap(~school_year) +
+  labs(title = "Fig. 7 Total Students by Exceptionality - Rural",
+       x = "Exceptionality",
+       y = "Number of Students")
+```
+
+```{r urban facet bars}
 #A visualization of Totals/Time for Urban areas
 ggplot(urban_districts, 
        aes(special_needs_code, number_of_students,
            color = special_needs_code)) +
   geom_line() +
   facet_wrap(~school_year) +
-  labs(title = "Total Students by Exceptionality",
+  labs(title = "Fig. 8 Total Students by Exceptionality",
        x = "Exceptionality",
        y = "Number of Students")
 
 ```
 
-The significant drop presents a second major outcome of interest, from which a posteriori visual analysis served as a basis for understanding notable trends. For example, multiple rural school districts reported a head count of more than 1,000 gifted students in 2004, and then by 2008 the districts reported fewer than 10 gifted students. This magnitude of declining gifted student designations is significant and specific to rural school districts in BC. Of particular note is the district of Prince George, where gifted students appeared to have been more 
+The significant drop presents a second major outcome of interest, from which a posteriori visual analysis served as a basis for understanding notable trends. For example, multiple rural school districts reported a head count of more than 1,000 gifted students in 2004, and then by 2008 the districts reported fewer than 10 gifted students. This magnitude of declining gifted student designations is significant and specific to rural school districts in BC. Of particular note is the district of Prince George, where gifted students appear to have accounted for the majority of overall students with exceptionalities until 2006.
 
-```{r rural play}
-
-
-#What's going on with Prince George? Why is there such a steep drop in 2006?
-pg <- rural_districts %>% 
-  filter(district_name == "Prince George") %>% 
-  as_tibble()
-
-pg_sums <- pg %>% 
-  group_by(school_year) %>% 
-  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
-  select(-c(district_number, special_needs_code, district_classification, number_of_students)) %>% 
-  distinct()
-
-
-#What's happening by Dx?
-pg_dx_sum <- pg %>% 
-  group_by(school_year, special_needs_code) %>% 
-  mutate(student = sum(number_of_students, na.rm = TRUE)) %>% 
-  select(-c(district_number, district_classification, number_of_students)) %>% 
-  distinct()
-
-ggplot(pg_dx_sum, aes(school_year, student)) +
-  geom_col() +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  facet_wrap(~special_needs_code) +
-  labs(title = "Students with Exceptionalities in Prince George 1999-2020",
-       x = "School Year",
-       y = "Number of Students")
-# Need some explanation here for explaining facet wrap
-
-#What's going on with gifted?????
-pg_gifted <- pg %>% 
-  filter(special_needs_code == "P") %>% 
-  select(-c(district_number, district_classification))
-
-ggplot(pg_gifted, aes(school_year, number_of_students)) +
-  geom_col() +
-    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "Gifted Students in Prince George 1999-2020",
-       subtitle = "Note: Totals under 10 are masked by district in reporting.",
-       x = "School Year",
-       y = "Total Students")
+```{r rural play, echo = FALSE}
 
 ##Looking into Sooke (SD 62 - pop. 9,269) categorized under Victoria so urban but technically rural
 ## In progress
