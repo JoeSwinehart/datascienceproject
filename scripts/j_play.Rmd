@@ -164,7 +164,31 @@ apa_table(
             "Number of Students")
 )
 
-#Ignore 
+unique(district_class$DISTRICT_NAME)
+# Table showing BC total needs designation by year
+urban_needs_data <- urban_districts %>% 
+  group_by(school_year, special_needs_code) %>% 
+  mutate(total = sum(number_of_students, na.rm = TRUE)) %>% 
+    select(-c("district_number",
+            "district_name",
+            "district_classification",
+            "number_of_students")) %>% 
+  distinct() %>% 
+  pivot_wider(names_from = special_needs_code,
+              values_from = total)
+
+apa_table(
+  urban_needs_data,
+  caption = "Total BC Students Eligible for Special Education Services",
+  note = "NA's indicate masked data where students eligible were less than 10.",
+  col.names = c("School Year",
+                "Physically Dependent",
+                "Deafblind",
+                "Moderate to Profound Intellectual Disability",
+                "Physical Disability or Chronic Health Impairment",
+                "Visual Impairment",
+                "Deaf or Hard of Hearing",
+                "Autism Spectrum Disorder",))
 
 ```
 
@@ -176,7 +200,6 @@ rural_districts <- district_class %>%
   select(-c("data_level",
             "public_or_independent",
             "district_population_2016"))
-
 #Viz - Totals by Code
 ggplot(rural_districts, 
        aes(special_needs_code, number_of_students,
@@ -189,10 +212,15 @@ ggplot(rural_districts,
 
 #Data for Rural Totals (NO categories)
 rural_totals <- rural_districts %>% 
-  group_by(school_year, district_name, district_number) %>% 
+  group_by(school_year, district_name) %>% 
   mutate(students = sum(number_of_students, na.rm = TRUE)) %>% 
-  select(-c(special_needs_code, district_classification, number_of_students)) %>% 
+  select(-c(special_needs_code, district_classification, number_of_students, district_number)) %>% 
   distinct()
+
+#This table is not in final draft, it shows rural district totals by year.
+rural_totals_by_year <- rural_totals %>% 
+  pivot_wider(names_from = "district_name",
+              values_from = "students")
 
 #Data Viz Totals/Time
 ggplot(rural_totals, aes(school_year, students)) +
@@ -232,6 +260,10 @@ pg_gifted <- pg %>%
 ggplot(pg_gifted, aes(school_year, number_of_students)) +
   geom_col() +
     theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+apa_table(pg_gifted,
+          caption = "Prince George Gifted Student Classification 1999-2020",
+          note = "Data masked when reflecting less than 10 students.")
 ```
 
 ```{r urban play}

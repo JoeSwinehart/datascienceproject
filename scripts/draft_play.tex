@@ -1,0 +1,433 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  english,
+  man]{apa6}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Trends in Pacific Northwest Special Education Population},
+  pdfauthor={David Fainstein1, Janette Avelar1, Makayla Whitney1, \& Joe Swinehart1},
+  pdflang={en-EN},
+  pdfkeywords={Vancouver, British Columbia, Oregon, Special Education, SpEd},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+\shorttitle{PACNW SpEd Trends}
+\keywords{Vancouver, British Columbia, Oregon, Special Education, SpEd\newline\indent Word count: 0<n<1,000,000}
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{csquotes}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\else
+  \usepackage[shorthands=off,main=english]{babel}
+\fi
+
+\title{Trends in Pacific Northwest Special Education Population}
+\author{David Fainstein\textsuperscript{1}, Janette Avelar\textsuperscript{1}, Makayla Whitney\textsuperscript{1}, \& Joe Swinehart\textsuperscript{1}}
+\date{}
+
+
+\authornote{
+
+Janette Avelar, University of Oregon College of Education
+David Fainstein, University of Oregon College of Education
+Joe Swinehart, Behavioral Research \& Teaching
+Makayla Whitney, University of Oregon College of Education
+
+Project completed using RStudio, GitKraken, GitHub, and papaja
+
+Contact: \href{mailto:dfainste@uoregon.edu}{\nolinkurl{dfainste@uoregon.edu}}
+
+The authors made the following contributions. David Fainstein: Conceptualization, Writing - Original Draft Preparation, Writing - Review \& Editing; Janette Avelar: Writing - Review \& Editing; Makayla Whitney: Writing - Review \& Editing; Joe Swinehart: Writing - Review \& Editing.
+
+Correspondence concerning this article should be addressed to David Fainstein, 1 David Ave, Eugene, Oregon, USA. E-mail: \href{mailto:dfainste@uoregon.edu}{\nolinkurl{dfainste@uoregon.edu}}
+
+}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} University of Oregon}
+
+\abstract{
+This paper will examine the changes in public school special education populations in Vancouver, British Columbia and Oregon over the last 20 years. The British Columbia (BC) data was pulled from an open-source data catalogue, published by the education analytics division of the Ministrty of Education in British Columbia. This longitudinal data acquistion is part of formal student status reporting that is required within BC public schools - typically occuring in October of each school year. The Oregon data was pulled from the Oregon Department of Education and covers special education enrollment from 2002 - 2020. This data acquistion is part of formal student status reporting that is required for compliance with federal IDEA laws - typically occuring in November or February of each school year. Within the BC dataset, students with exceptionalities are categorized in one of 12 eligibility categories; within the Oregon dataset, this is 13 categories.
+
+Two to three sentences of \textbf{more detailed background}, comprehensible to scientists in related disciplines.
+
+One sentence clearly stating the \textbf{general problem} being addressed by this particular study.
+
+One sentence summarizing the main result (with the words ``\textbf{here we show}'' or their equivalent).
+
+Two or three sentences explaining what the \textbf{main result} reveals in direct comparison to what was thought to be the case previously, or how the main result adds to previous knowledge.
+
+One or two sentences to put the results into a more \textbf{general context}.
+
+Two or three sentences to provide a \textbf{broader perspective}, readily comprehensible to a scientist in any discipline.
+}
+
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Our project was built around two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets detail the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 1996/1997 to the most recent data from 2019/2020. The OR head counts include years 2002-2020. Levels of categorization include school- district- and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
+
+We intend to explore several questions regarding longitudinal trends. Firstly, we hope to analyze trends in disability prevalence over time. We will engage in a discussion on developmental trajectories by studying how trends shift from static/linear to increasing linear trends based on age of diagnosis for the OR data, which can serve as a springboard to make inferences about BC data. In studying the differences and similarities between the two datasets we will also engage in a discussion on diagnosis terminology across regions with respect to the definitions as detailed by the Diagnostic and Statistical Manual of Mental Disorders (DSM), in part as a response to a challenge set by differing terminology between BC/OR categorization.
+
+Secondly, we hope to more closely analyze any changes, or lack thereof, within the BC data following the year 2016 during which a BC Supreme Court ruled in favor of limiting the number of special needs students in classrooms and expanding the number of specialist teachers schools are required to hire.
+
+Finally, we will also explore differences between urban and rural school districts in BC. Districts are categorized by population size and proximity to metropolitan areas, as recorded and defined by the Statistics Canada census from 2016. Two fringe rural districts exhibiting high populations will be picked out and high-incidence diagnoses will be compared to those of other regions over time.
+
+-- more introductory text here --
+Children designated with Special Needs categories have predominantly increased at different rates in British Columbia over time. The figure below demonstrates growth of 12 potential designations over an 18 year time period:
+
+\begin{verbatim}
+## Warning: Problem with `mutate()` input `NUMBER_OF_STUDENTS`.
+## i NAs introduced by coercion
+## i Input `NUMBER_OF_STUDENTS` is `as.integer(NUMBER_OF_STUDENTS)`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in mask$eval_all_mutate(dots[[i]]): NAs introduced by coercion
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/sandbox-1.pdf}
+
+\begin{verbatim}
+## Warning in FUN(newX[, i], ...): NAs introduced by coercion
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] "1996/1997" "1997/1998" "1998/1999" "1999/2000" "2000/2001" "2001/2002"
+##  [7] "2002/2003" "2003/2004" "2004/2005" "2005/2006" "2006/2007" "2007/2008"
+## [13] "2008/2009" "2009/2010" "2010/2011" "2011/2012" "2012/2013" "2013/2014"
+## [19] "2014/2015" "2015/2016" "2016/2017" "2017/2018" "2018/2019" "2019/2020"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in FUN(newX[, i], ...): NAs introduced by coercion
+\end{verbatim}
+
+The district classification data was scaled down to include only public schools, while excluding private institutions. The school districts of Southeast Kootenay, Rocky Mountain, Kootenay Lake, Arrow Lakes, Revelstoke, Kootenay-Columbia, Cariboo-Chilcotin, Sea to Sky, Central Coast, Haida Gwaii, Boundary, Bulkley Valley, Nicola-Simikameen, Peace River South, Peace River North, Gulf Islands, Qualicum, Comox Valley, Campbell River, Gold Trail, Fraser-Cascade, Coast Mountains, Vancouver Island West, Vancouver Island North, Stikine, Nechako Lakes, Nisga'a, and Conseil scolaire francophone were excluded from the data set due to the lack of sufficient population information. The urban vs.~rural classifications were made based on the district's population on the 2016 census. If the population was above 100,000 individuals, it is classified as urban. If the population was below 99,999 individuals, then it is classified as rural.
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:District Census Population Table}District Classification by Population According to 2016 Census}
+
+\begin{tabular}{lllll}
+\toprule
+District Number & District Name & Population & Classification & Number of Students\\
+\midrule
+022 & Vernon & 61,334 & Rural & 16,768\\
+023 & Central Okanagan & 194,882 & Urban & 43,609\\
+028 & Quesnel & 23,146 & Rural & 9,036\\
+033 & Chilliwack & 101,512 & Urban & 28,997\\
+034 & Abbotsford & 180,518 & Urban & 38,369\\
+035 & Langley & 2,463,431 & Urban & 43,043\\
+036 & Surrey & 2,463,431 & Urban & 143,222\\
+037 & Delta & 2,463,431 & Urban & 43,897\\
+038 & Richmond & 2,463,431 & Urban & 40,221\\
+039 & Vancouver & 2,463,431 & Urban & 132,584\\
+040 & New Westminster & 2,463,431 & Urban & 11,714\\
+041 & Burnaby & 2,463,431 & Urban & 47,952\\
+042 & Maple Ridge-Pitt Meadows & 2,463,431 & Urban & 33,633\\
+043 & Coquitlam & 2,463,431 & Urban & 88,291\\
+044 & North Vancouver & 2,463,431 & Urban & 39,657\\
+045 & West Vancouver & 2,463,431 & Urban & 11,732\\
+046 & Sunshine Coast & 2,463,431 & Urban & 13,283\\
+047 & Powell River & 16,783 & Rural & 6,816\\
+052 & Prince Rupert & 12,687 & Rural & 7,222\\
+053 & Okanagan Similkameen & 43,432 & Rural & 6,596\\
+057 & Prince George & 86,622 & Rural & 39,443\\
+061 & Greater Victoria & 367,770 & Urban & 50,051\\
+062 & Sooke & 367,770 & Urban & 24,126\\
+063 & Saanich & 367,770 & Urban & 19,533\\
+067 & Okanagan Skaha & 43,432 & Rural & 19,156\\
+068 & Nanaimo-Ladysmith & 104,936 & Urban & 30,870\\
+070 & Port Alberni & 25,112 & Rural & 11,654\\
+073 & Kamloops-Thompson & 103,811 & Urban & 32,620\\
+075 & Mission & 33,261 & Rural & 13,858\\
+079 & Cowichan Valley & 44,451 & Rural & 21,479\\
+081 & Fort Nelson & 18,307 & Rural & 1,319\\
+083 & North Okanagan-Shuswap & 43,432 & Rural & 23,720\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Number of students is estimated and does not include masked data.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+This table displays the census results from 2011 and 2016 for our school districts. Many of the populations have stayed consistent within their urban or rural category. Three districts to note from the table are Nanaimo, Kamloops, and Chilliwack. In 2011, they were rural, but for our dataset they have been classified as urban due to their population increase in 2016.
+
+\begin{verbatim}
+## Warning: Removed 129 row(s) containing missing values (geom_path).
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/rural play-1.pdf} \includegraphics{draft_play_files/figure-latex/rural play-2.pdf} \includegraphics{draft_play_files/figure-latex/rural play-3.pdf}
+
+\begin{verbatim}
+## Warning: Removed 12 rows containing missing values (position_stack).
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/rural play-4.pdf} \includegraphics{draft_play_files/figure-latex/rural play-5.pdf}
+
+\begin{verbatim}
+## geom_col: width = NULL, na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_stack
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/urban play-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 25 row(s) containing missing values (geom_path).
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/urban play-2.pdf}
+
+\begin{verbatim}
+## # A tibble: 198 x 18
+##    year  disability    x6    x7    x8    x9   x10   x11   x12   x13   x14   x15
+##    <chr> <chr>      <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1 2002~ INTELLECT~   135   172   220   261   279   303   370   364   388   378
+##  2 2002~ HEARING I~    46    66    69    67    79    78    69    70    53    72
+##  3 2002~ SPEECH OR~  2502  2466  2443  2205  1894  1282   874   677   493   340
+##  4 2002~ VISUAL IM~    18    27    25    16    12    26    19    24    31    19
+##  5 2002~ EMOTIONAL~    81   178   241   292   347   433   504   487   549   548
+##  6 2002~ ORTHOPEDI~    65    77    64    49    64    71    50    48    44    43
+##  7 2002~ DEAF-BLIN~     0     2     0     0     1     0     2     0     4     2
+##  8 2002~ MULTIPLE ~     0     0     0     0     0     0     0     0     0     0
+##  9 2002~ AUTISM       267   289   290   334   325   316   290   256   243   219
+## 10 2002~ TRAUMATIC~     6    11    17    23    22    19    21    23    36    36
+## # ... with 188 more rows, and 6 more variables: x16 <dbl>, x17 <dbl>,
+## #   x18 <dbl>, x19 <dbl>, x20 <dbl>, x21 <dbl>
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 198 x 3
+## # Groups:   year [18]
+##     year disability                    total
+##    <dbl> <chr>                         <dbl>
+##  1  2002 AUTISM                         3339
+##  2  2002 DEAF-BLINDNESS                   17
+##  3  2002 DEVELOPMENTAL DELAY               0
+##  4  2002 EMOTIONAL DISTURBANCE          4736
+##  5  2002 HEARING IMPAIRMENT              873
+##  6  2002 INTELLECTUAL DISABILITY        4387
+##  7  2002 MULTIPLE DISABILITIES             0
+##  8  2002 ORTHOPEDIC IMPAIRMENT           754
+##  9  2002 SPEECH OR LANGUAGE IMPAIRMENT 15784
+## 10  2002 TRAUMATIC BRAIN INJURY          306
+## # ... with 188 more rows
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 12 row(s) containing missing values (geom_path).
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/Oregon plot-1.pdf}
+
+\includegraphics{draft_play_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{verbatim}
+## Warning: Removed 190 rows containing non-finite values (stat_smooth).
+\end{verbatim}
+
+\includegraphics{draft_play_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study.
+
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
+
+\hypertarget{material}{%
+\subsection{Material}\label{material}}
+
+\hypertarget{procedure}{%
+\subsection{Procedure}\label{procedure}}
+
+\hypertarget{data-analysis}{%
+\subsection{Data analysis}\label{data-analysis}}
+
+We used R (Version 4.0.3; R Core Team, 2020) and the R-packages \emph{dplyr} (Version 1.0.2; Wickham et al., 2020), \emph{forcats} (Version 0.5.0; Wickham, 2020a), \emph{ggplot2} (Version 3.3.2; Wickham, 2016), \emph{here} (Version 0.1; Müller, 2017), \emph{janitor} (Version 2.0.1; Firke, 2020), \emph{papaja} (Version 0.1.0.9997; Aust \& Barth, 2020), \emph{purrr} (Version 0.3.4; Henry \& Wickham, 2020), \emph{readr} (Version 1.4.0; Wickham \& Hester, 2020), \emph{readxl} (Version 1.3.1; Wickham \& Bryan, 2019), \emph{stringr} (Version 1.4.0; Wickham, 2019), \emph{tibble} (Version 3.0.4; Müller \& Wickham, 2020), \emph{tidyr} (Version 1.1.2; Wickham, 2020b), and \emph{tidyverse} (Version 1.3.0; Wickham, Averick, et al., 2019) for all our analyses.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-R-papaja}{}%
+Aust, F., \& Barth, M. (2020). \emph{papaja: Create APA manuscripts with R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
+
+\leavevmode\hypertarget{ref-R-janitor}{}%
+Firke, S. (2020). \emph{Janitor: Simple tools for examining and cleaning dirty data}. Retrieved from \url{https://CRAN.R-project.org/package=janitor}
+
+\leavevmode\hypertarget{ref-R-purrr}{}%
+Henry, L., \& Wickham, H. (2020). \emph{Purrr: Functional programming tools}. Retrieved from \url{https://CRAN.R-project.org/package=purrr}
+
+\leavevmode\hypertarget{ref-R-here}{}%
+Müller, K. (2017). \emph{Here: A simpler way to find your files}. Retrieved from \url{https://CRAN.R-project.org/package=here}
+
+\leavevmode\hypertarget{ref-R-tibble}{}%
+Müller, K., \& Wickham, H. (2020). \emph{Tibble: Simple data frames}. Retrieved from \url{https://CRAN.R-project.org/package=tibble}
+
+\leavevmode\hypertarget{ref-R-base}{}%
+R Core Team. (2020). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
+
+\leavevmode\hypertarget{ref-R-ggplot2}{}%
+Wickham, H. (2016). \emph{Ggplot2: Elegant graphics for data analysis}. Springer-Verlag New York. Retrieved from \url{https://ggplot2.tidyverse.org}
+
+\leavevmode\hypertarget{ref-R-stringr}{}%
+Wickham, H. (2019). \emph{Stringr: Simple, consistent wrappers for common string operations}. Retrieved from \url{https://CRAN.R-project.org/package=stringr}
+
+\leavevmode\hypertarget{ref-R-forcats}{}%
+Wickham, H. (2020a). \emph{Forcats: Tools for working with categorical variables (factors)}. Retrieved from \url{https://CRAN.R-project.org/package=forcats}
+
+\leavevmode\hypertarget{ref-R-tidyr}{}%
+Wickham, H. (2020b). \emph{Tidyr: Tidy messy data}. Retrieved from \url{https://CRAN.R-project.org/package=tidyr}
+
+\leavevmode\hypertarget{ref-R-tidyverse}{}%
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., \ldots{} Yutani, H. (2019). Welcome to the tidyverse. \emph{Journal of Open Source Software}, \emph{4}(43), 1686. \url{https://doi.org/10.21105/joss.01686}
+
+\leavevmode\hypertarget{ref-R-readxl}{}%
+Wickham, H., \& Bryan, J. (2019). \emph{Readxl: Read excel files}. Retrieved from \url{https://CRAN.R-project.org/package=readxl}
+
+\leavevmode\hypertarget{ref-R-dplyr}{}%
+Wickham, H., François, R., Henry, L., \& Müller, K. (2020). \emph{Dplyr: A grammar of data manipulation}. Retrieved from \url{https://CRAN.R-project.org/package=dplyr}
+
+\leavevmode\hypertarget{ref-R-readr}{}%
+Wickham, H., \& Hester, J. (2020). \emph{Readr: Read rectangular text data}. Retrieved from \url{https://CRAN.R-project.org/package=readr}
+
+\endgroup
+
+
+\end{document}
