@@ -141,7 +141,7 @@ BCdatastripped_spedcat <- BCdatastripped %>%
          SPECIAL_NEEDS_CODE != "J",
          SPECIAL_NEEDS_CODE != "N")
 
-# Strengh 4: The reconding part is really smart! 
+# Strength 4: The recoding part is really smart! 
  ggplot(BCdatastripped_spedcat, aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS)) +
   geom_line(color = "cornflowerblue") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
