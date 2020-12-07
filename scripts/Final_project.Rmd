@@ -184,11 +184,12 @@ Finally, we will explore differences between urban and rural school districts in
 In comparison to the United States, Canadian education policy receives little attention and scholarly interest (Walker & Bergmann, 2013). While Canadian K-12 academic achievement outcomes are generally higher than a national-level comparison with the US, there are ongoing policy issues to address when provincial ministries of education are crafting legislation and procedures to impact a top-tier system of education. Significant events, such as the 2016 Canadian supreme court ruling that directly impacted British Columbia classrooms, have downstream effects on instructional interactions; yet a retroactive policy lens is rarely applied after such events occur. The current study seeks to address the knowledge gap of downstream instructional interact effects after a significant event in BC educational policy.
  
 With respect to the 2016 Supreme Court of Canada decision to revert BC classroom composition, size, and ratios for specialist teachers:
-(1) Do student prevalence rates of disability or disorder decrease after the supreme court ruling of 2016 against existing trends?
-(2) Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
+\begin{enumerate}
+  \item Do student prevalence rates of disability or disorder decrease after the supreme court ruling of 2016 against existing trends?
+  \item Are there different patterns for disability or disorder designation for rural versus urban school districts after the supreme court ruling in 2016?
+ \end{enumerate}
  
 # Methods
- 
 Datasets were extracted from publicly available sources. Specifically, the BC Ministry of Education, Oregon Department of Education, and Statistics Canada are the data sources for the current study. Note that the primary jurisdiction of interest is BC, and OR is selected as a reasonable basis of comparison (i.e., similar geography, population, and population growth rate). Further, BC has distinct educational policy from OR as Canadian education is administered entirely by provincial ministries of education and special education law is remarkably different between BC and OR. Together, these datasets help achieve three objectives for acquiring data appropriate to the research questions:
 Headcount data at multiple levels (e.g., district and state or province) for students with exceptionalities, disaggregated by category of exceptionality, year, and location.
 Population data to fit school district locations to a geographical classification (e.g., urban, suburban, rural) as specified in national documentation (e.g., urban centers have a minimum of 10,000 inhabitants based on census data), and calculate prevalence rates.
@@ -204,10 +205,10 @@ The majority of the analyses for the current study are descriptive in nature. Th
 $$
 Hedges' g = \frac{M_1 + M_2}{SD_{pooled}} 
 $$
-# Results
-Writing on results here...
 
-First, we see that the BC trends do not show significant changes after the 2016 supreme court ruling.
+# Results
+To answer the first research question, we examine the provincial-level prevalence data by exceptionality to view trendlines over 15 years. It is apparent that 2016 is not a point of inflection for any of the twelve designations listed. Low-incidence exceptionalities remain consistent, and high-incidence exceptionalities are linearly (e.g., Learning Disabilities) or exponentially (e.g., Autism) increasing, and some high-incidence exceptionalities are linearly decreasing (e.g., Gifted). Due to the fact that there are no significant points of inflection observed on any of the 12 trendlines in figure 1, no further investigation (e.g., calculating effect size) was warranted.
+
 ```{r Provinical_Data_Overview}
 
 BCprovincial <- BCdatastripped %>% 
@@ -249,7 +250,10 @@ fresh_primo %>%
 
 ```
 
-This is roughly in line with Oregon's designation data, showing that there were no state-wide anomalies after the year 2016.
+This is roughly in line with Oregon's designation data, showing that there were no state-wide anomalies after the year 2016. Similar to the BC data, we see a steady increase in students identified under the autism diagnosis, while most categories remained relatively stable over all of the years surveyed. The recent growth in Developmental Delays and Emotional Disturbance would be worth watching in future years, but we can reasonably predict that more rigid  categories like Deaf-Blindness and Traumatic Brain Injury will remain stable in the years to come.
+
+Looking at Oregon disability prevalence by age gives us some idea of what happens to these categories over time, and also invites some questions. Most visually striking is the drop-off of students identified as having a Speech or Language Impairment, which makes sense, as it is addressed early in school and highly correctable. By middle school, most students have been exited from the speech program. At a striking contrast would be things that cannot be corrected, such as Deaf-Blindness or Traumatic Brain Injury. As expected, these numbers are extremely static over time. More thought-provoking would be the numbers for Emotional Disturbance. These tend to grow fairly steadily during elementary and middle school, but around age 16 the numbers actually start to decrease. One might wonder if this drop is due to these students no longer being part of the school system, as they may be far more likely to drop out and/or enter a different system as adjudicated youth. It certainly would be worth an additional look in the future.
+
 ```{r}
 #this is more in line with the BC graphing
 ggplot(fresh_primo, aes(year, frequency))+
@@ -294,7 +298,10 @@ ggplot() +
 ```
 
 
-Then, we examine the rural versus urban trends and notice a few things...
+Taken together, we see that at the provincial- and state-levels, there is consistency in identification of students with exceptionalities. It is clear that a notable inflection point in 2016 for the BC data would have represented a significant change from practice when comparing student identification practices in Oregon; however, there is no apparent inflection point in the BC data.
+
+To examine potential differences within BC, the authors chose to divide school districts by urban or rural designation according to Statistics Canada guidelines on characterizing living populations.
+
 
 ```{r urban vs. rural}
 
@@ -474,7 +481,15 @@ ggplot(urban_districts,
        y = "Number of Students")
 ```
 
-# Discussion
-Regarding the first research question, it is apparent that the 2016 supreme court decision did not impact any of the 12 designation categories as hypothesized. The trendlines for each of the exceptionality categories remained consistent post-2016 in BC and this mapped on to Oregon trends in exceptionality designation reasonably closely. This finding suggests that the resources and practices around supporting student 
+There are two major outcomes of interest observed with the data sets when disaggregated by rural and urban school districts. First, the trends of rural student exceptionality designations followed urban trends closely. The vast majority of urban school districts did not differ in their post-2016 prevalence rates for exceptionality designations (ps > 0.05). However, for diagnostically malleable categories (e.g., Moderate Behavioural designation) in rural school districts, 2016 was an inflection point for an increase in prevalence rates. When comparing prevalence rates between 2013-2016 (pre-2016 group) and 2017-2019 (post-2016 group) cohorts of rural students, the prevalence rate increased for the following student designation categories: High Behavioural Interventions (t(239) = -2.113, p = 0.036, g = 0.261, CI[-0.504, -0.019]), Learning Disability (t(262) = -1.984, p = 0.483, g = 0.230, CI[-0.453, -0.007]), and Chronic Health (t(255) = -2.068, p = 0.040, g = 0.247, CI[-0.479, -0.015]). Note that the exceptionality category Mild Behavioural Intervention did not result with the same small, detectable effect size (Hedges’ g > 0.2, and g < 0.5), but did show an increasing trend post-2016 (t(195) = -0.879, p = 0.380, g = 0.120, CI[-0.383, 0.144]).
 
-The rapid decrease in students identified as gifted in rural districts between the years of 2004 and 2007 cannot be explained by one sole factor in this exploratory analysis. With respect to the speculative nature of this assertion, the authors assume that educational policy at the provincial level impacts educational practice across school districts. In 2006, the British Columbia Ministry of Education released Special education services: A manual of policies, procedures and guidelines, which explicitly states the acceleration programming that should be afforded to students with exceptional academic talent (Kanevsky & Clelland, 2016). In fact, this 2006 version of the manual was a revision of the original 1995 manual, and this initial version included scant guidance on service provision to gifted students. This 2016 shift in policy links to a higher degree of resources afforded to gifted students through “independent, guided education” (p. 52). Given the additional resources needed to properly implement gifted educational services, rural school districts may have de-designated students and sought other ways to provide instruction that meets the needs of their students. For example, Lo et al. (2019) suggest that the British Columbia Ministry of Education’s recent curriculum update makes amends for traditional test-and-place gifted student support model by giving educators the tools and inclusive framework to offer a rich, meaningful education to all students with exceptionalities. 
+# Discussion
+Regarding the first research question, it is apparent that the 2016 Supreme Court decision did not impact any of the 12 designation categories as hypothesized. The trendlines for each of the exceptionality categories remained consistent post-2016 in BC and this mapped on to Oregon trends in exceptionality designation reasonably closely. This finding suggests that the resources and practices around supporting students with exceptionalities did not differ significantly from a provincial policy determination. 
+
+Data on the second research question on rural versus urban school district response to the 2016 Supreme Court ruling suggests that the authors correctly hypothesized that there are differences for rural versus urban districts. Urban school districts largely followed provincial-level trends, and rural school districts had small effect sizes of increased prevalence for the post-2016 cohort of students. That is, when looking at all rural school districts and comparing two groups, four years preceding 2017 and three years 2017 through 2019, there is a significant increase in prevalence for designations in which clinicians have diagnostic flexibility (e.g., behavioural designations, temporary health conditions). This finding suggests that clinicians and administrators in rural school districts responded to the 2016 Supreme Court ruling by changing exceptionality designation practices that align with an increase in prevalence. 
+
+The rapid decrease in students identified as gifted in rural districts between the years of 2004 and 2007 cannot be explained by one sole factor in this exploratory analysis. With respect to the speculative nature of this assertion, the authors assume that educational policy at the provincial level impacts educational practice across school districts. In 2006, the British Columbia Ministry of Education released Special education services: A manual of policies, procedures and guidelines, which explicitly states the acceleration programming that should be afforded to students with exceptional academic talent (Kanevsky & Clelland, 2016). In fact, this 2006 version of the manual was a revision of the original 1995 manual, and this initial version included scant guidance on service provision to gifted students. This 2016 shift in policy links to a higher degree of resources afforded to gifted students through “independent, guided education” (p. 52). Given the additional resources needed to properly implement gifted educational services, rural school districts may have de-designated students and sought other ways to provide instruction that meets the needs of their students. For example, Lo et al. (2019) suggest that the British Columbia Ministry of Education’s recent curriculum update makes amends for the traditional test-and-place gifted student support model by giving educators the tools and inclusive framework to offer a rich, meaningful education to all students with exceptionalities. 
+
+# References
+
+
