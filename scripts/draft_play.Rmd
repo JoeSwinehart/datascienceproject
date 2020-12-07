@@ -88,7 +88,7 @@ BCdatastripped <- BCdata %>%
   filter(DATA_LEVEL == "PROVINCE LEVEL", 
          PUBLIC_OR_INDEPENDENT == "PROVINCE - Total")
 
-# Here I learned to use the package called "readxl", which can help to read xlsx. fless. I will try this and see what is the benefit of this package! 
+# Here I learned to use the package called "readxl", which can help to read xlsx. files. I will try this and see what is the benefit of this package! 
 ```
 
 
