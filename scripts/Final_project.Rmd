@@ -149,27 +149,17 @@ g_vic <- district_class %>%
 
 
 
-#best one yet! Box-and-whisker plot
-ggpairs(g_vic,
-        upper = list(continuous = ggally_dot_and_box, combo = ggally_box_no_facet),
-        lower = list (continuous = "smooth",
-                      combo = "facetdensity",
-                      mapping = aes(color = SPECIAL_NEEDS_CODE)))
-
-#let's try bar graph
+#bar graph added
 ggpairs(g_vic,
         upper = list(continuous = ggally_barDiag, combo = ggally_barDiag),
         lower = list (continuous = "smooth",
                       combo = "facetdensity",
                       mapping = aes(color = SPECIAL_NEEDS_CODE)))
-        
-ggally_dot_and_box(g_vic, 
-                   mapping = ggplot2::aes(x = SCHOOL_YEAR, y = NUMBER_OF_STUDENTS),
-                   boxPlot = TRUE) +
-  theme(axis.text.x = element_blank())
-
 
 ```
+ 
+The above correlogram isolates a single school district - Greater Victoria - as a representation of the trends observed within the whole data set. This series of plots gives a snapshot introduction for the data trends to be observed. 
+ 
  
 ## Current Study
 Our project primarily examines two datasets detailing head counts of students with exceptionalities eligible for special education services aged 6-21. The datasets offer insights to the categorization for special education eligibility in public schools within British Columbia (BC) and Oregon (OR). The head counts from BC are collected from 2002/2003 to the most recent data from 2019/2020. The OR head counts are drawn from an annual dataset spanning 2002 through 2020. Levels of categorization include school-, district-, and provincial-level head counts for BC. The OR data set includes state-wide head counts that are not aggregated by school or district.
