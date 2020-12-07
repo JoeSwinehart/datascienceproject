@@ -122,6 +122,11 @@ BCdatastripped <- BCdata %>%
            SCHOOL_YEAR = as.numeric(SCHOOL_YEAR)) %>% 
   filter(SCHOOL_YEAR >= 9)
 
+ # Making student number column numeric
+x <- c(10)
+BCdata[ , x] <- apply(BCdata[ , x], 2,
+                               function(x)as.numeric(as.character(x)))
+
 BC_districtdata <- BCdatastripped %>% 
   filter(DATA_LEVEL == "DISTRICT LEVEL")
 Prevalence_data <- inner_join(BCpop_district, BC_districtdata, by = c("SCHOOL_YEAR", "DISTRICT_NUMBER"), all.x = TRUE)
